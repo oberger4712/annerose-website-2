@@ -57,7 +57,7 @@ function renderGallery() {
   const grid = document.getElementById('gallery-grid');
 
   if (!paintings.length) {
-    grid.innerHTML = '<p class="gallery__empty">Noch keine Werke vorhanden. Bilder in <code>public/images/</code> ablegen und in <code>public/paintings.json</code> eintragen.</p>';
+    grid.innerHTML = '<p class="gallery__empty">Noch keine Werke vorhanden.</p>';
     return;
   }
 
