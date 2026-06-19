@@ -49,6 +49,9 @@ function renderBio() {
   const img = document.getElementById('bio-img');
   img.src = p.image;
   img.alt = p.title;
+
+  const fig = img.closest('.reveal');
+  if (fig) observeRevealElements(fig.parentElement);
 }
 
 // ── GALLERY GRID ──────────────────────────────────────────────
