@@ -52,8 +52,10 @@ export function observeRevealElements(container) {
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-  container.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 4) * 70}ms`;
-    io.observe(el);
+  requestAnimationFrame(() => {
+    container.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 70}ms`;
+      io.observe(el);
+    });
   });
 }
