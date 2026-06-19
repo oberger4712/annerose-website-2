@@ -4,521 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Annerose Berger — Ateliergalerie</title>
-  <!--
-    Lokale Vorschau: python3 -m http.server 8080  →  http://localhost:8080
-    Deployment: einfach den Ordner auf GitHub Pages, Netlify oder Vercel hochladen.
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Expanded:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* ── DESIGN TOKENS ──────────────────────────────────────── */
-    :root {
-      --pig-cobalt:      #1C44AE;
-      --pig-cobalt-deep: #0E2A78;
-      --pig-azure:       #2E78C9;
-      --pig-gold:        #ECB02E;
-      --pig-gold-deep:   #C98A1E;
-      --pig-vermilion:   #CE3A2B;
-
-      --n-canvas:   #F7F3EA;
-      --n-paper:    #FFFFFF;
-      --n-mist:     #EDE9DF;
-      --n-stone:    #D9D4C8;
-      --n-slate:    #8C887E;
-      --n-graphite: #3A3A3C;
-      --n-charcoal: #1C1C1E;
-      --n-ink:      #161618;
-
-      --surface-page:   var(--n-canvas);
-      --surface-card:   var(--n-paper);
-      --surface-sunk:   var(--n-mist);
-      --text-strong:    var(--n-ink);
-      --text-body:      var(--n-graphite);
-      --text-muted:     var(--n-slate);
-      --text-on-accent: var(--n-paper);
-      --border-hair:    var(--n-stone);
-      --accent:         var(--pig-cobalt);
-      --accent-hover:   var(--pig-cobalt-deep);
-      --focus-ring:     var(--pig-cobalt);
-
-      --font-display: 'Archivo Expanded', 'Archivo', system-ui, sans-serif;
-      --font-text:    'Archivo', system-ui, -apple-system, sans-serif;
-
-      --fs-overline: 0.75rem;
-      --fs-caption:  0.8125rem;
-      --fs-body:     1rem;
-      --fs-lead:     1.1875rem;
-
-      --shadow-card:  0 1px 3px rgba(22,22,24,.08), 0 8px 24px rgba(22,22,24,.06);
-      --shadow-lift:  0 4px 12px rgba(22,22,24,.10), 0 24px 48px rgba(22,22,24,.12);
-      --shadow-frame: 0 2px 6px rgba(22,22,24,.18);
-
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --dur-base: 240ms;
-    }
-
-    [data-theme="dark"] {
-      --surface-page: var(--n-ink);
-      --surface-card: var(--n-charcoal);
-      --text-strong:  var(--n-paper);
-      --text-body:    #D7D4CC;
-      --text-muted:   var(--n-slate);
-      --border-hair:  #34343A;
-      --accent:       var(--pig-azure);
-      --accent-hover: #5697DD;
-    }
-
-    /* ── RESET ──────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--surface-page);
-      font-family: var(--font-text);
-      color: var(--text-body);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── HEADER ─────────────────────────────────────────────── */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px clamp(20px, 5vw, 64px);
-      background: color-mix(in srgb, var(--n-canvas) 88%, transparent);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-hair);
-    }
-    .wordmark {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .wordmark__badge {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      border: 2px solid var(--text-strong);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display);
-      font-weight: 700; font-size: 16px; letter-spacing: -0.02em;
-      color: var(--text-strong);
-      flex-shrink: 0;
-    }
-    .wordmark__name {
-      font-family: var(--font-display);
-      font-weight: 800; font-size: 19px; letter-spacing: -0.02em;
-      color: var(--text-strong);
-    }
-    .site-nav {
-      display: flex; align-items: center;
-      gap: clamp(16px, 3vw, 38px);
-    }
-    .nav-link {
-      font-family: var(--font-text);
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 6px 0;
-      transition: color var(--dur-base);
-    }
-    .nav-link--active { color: var(--text-strong); border-bottom: 2px solid var(--accent); }
-    .nav-link:hover   { color: var(--text-strong); }
-
-    /* ── HERO ───────────────────────────────────────────────── */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-      gap: clamp(32px, 6vw, 88px);
-      align-items: center;
-      max-width: 1280px; margin: 0 auto;
-      padding: clamp(40px, 7vw, 88px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 64px);
-    }
-    .overline {
-      display: block;
-      font-family: var(--font-text);
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--accent);
-    }
-    .hero__heading {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(40px, 5vw, 72px);
-      line-height: 1.02; letter-spacing: -0.02em;
-      color: var(--text-strong);
-      margin: 16px 0 0;
-    }
-    .hero__body {
-      font-size: var(--fs-lead); line-height: 1.5;
-      color: var(--text-body); max-width: 42ch;
-      margin: 22px 0 0; font-weight: 500;
-    }
-    .hero__figure { margin: 0; }
-    .artwork-mat {
-      padding: clamp(12px, 2.5%, 26px);
-      background: var(--n-paper);
-      box-shadow: var(--shadow-lift);
-    }
-    .artwork-mat img { display: block; width: 100%; height: auto; }
-    .hero__caption {
-      font-size: 13px; color: var(--text-muted);
-      margin-top: 16px;
-    }
-    .hero__caption strong { color: var(--text-strong); font-weight: 600; }
-
-    /* ── GALLERY ────────────────────────────────────────────── */
-    .gallery {
-      max-width: 1280px; margin: 0 auto;
-      padding: clamp(16px, 3vw, 32px) clamp(20px, 5vw, 64px) clamp(48px, 7vw, 96px);
-    }
-    .gallery__header {
-      display: flex; align-items: flex-end;
-      justify-content: space-between; gap: 24px;
-      flex-wrap: wrap;
-      margin-bottom: clamp(28px, 4vw, 48px);
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--border-hair);
-    }
-    .gallery__title {
-      font-family: var(--font-display);
-      font-weight: 700; font-size: clamp(26px, 4vw, 40px);
-      letter-spacing: -0.02em; color: var(--text-strong);
-      margin: 0;
-    }
-    .tag--gold {
-      display: inline-block;
-      font-family: var(--font-text);
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--pig-gold-deep);
-      background: color-mix(in srgb, var(--pig-gold) 14%, var(--n-paper));
-      border: 1px solid color-mix(in srgb, var(--pig-gold) 30%, var(--n-paper));
-      padding: 4px 10px; border-radius: 2px;
-    }
-    .gallery__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: clamp(28px, 4vw, 52px);
-    }
-    .gallery__empty {
-      color: var(--text-muted);
-      font-size: var(--fs-body);
-      grid-column: 1 / -1;
-    }
-
-    /* ── ARTWORK CARD ───────────────────────────────────────── */
-    .artwork-card {
-      display: flex; flex-direction: column;
-      gap: 16px; cursor: pointer; margin: 0;
-    }
-    .artwork-card__frame {
-      background: var(--n-paper);
-      padding: clamp(14px, 4%, 32px);
-      box-shadow: var(--shadow-frame);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform var(--dur-base) var(--ease-out),
-                  box-shadow var(--dur-base) var(--ease-out);
-    }
-    .artwork-card:hover .artwork-card__frame {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lift);
-    }
-    .artwork-card__frame img {
-      display: block; width: 100%; height: auto; object-fit: contain;
-    }
-    .artwork-card__title {
-      margin: 0;
-      font-family: var(--font-text);
-      font-size: 1.5rem; font-weight: 600;
-      letter-spacing: -0.01em; color: var(--text-strong);
-      line-height: 1.1;
-    }
-    .artwork-card__title span { color: var(--text-muted); font-weight: 400; }
-    .artwork-card__meta {
-      margin: 0;
-      font-size: var(--fs-caption);
-      color: var(--text-muted); line-height: 1.5;
-    }
-
-    /* ── BIO SECTION ────────────────────────────────────────── */
-    .bio { background: var(--surface-page); }
-    .bio__inner {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: clamp(32px, 6vw, 88px); align-items: center;
-      max-width: 1280px; margin: 0 auto;
-      padding: clamp(48px, 8vw, 120px) clamp(20px, 5vw, 64px);
-    }
-    .bio__figure {
-      margin: 0;
-      padding: clamp(12px, 2vw, 22px);
-      background: var(--n-paper);
-      box-shadow: var(--shadow-lift);
-    }
-    .bio__figure img { display: block; width: 100%; height: auto; }
-    .bio__heading {
-      font-family: var(--font-display);
-      font-weight: 700; font-size: clamp(30px, 4vw, 52px);
-      letter-spacing: -0.02em; color: var(--text-strong);
-      margin: 18px 0 0; line-height: 1.05;
-    }
-    .bio__body {
-      font-size: var(--fs-body); line-height: 1.6;
-      margin: 18px 0 0; color: var(--text-body);
-    }
-    .bio__body--lead { font-size: var(--fs-lead); margin-top: 26px; }
-    .bio__stats {
-      display: flex; gap: clamp(24px, 4vw, 56px);
-      margin-top: 38px; flex-wrap: wrap;
-    }
-    .stat__value {
-      font-family: var(--font-display);
-      font-weight: 700; font-size: 26px;
-      color: var(--text-strong);
-    }
-    .stat__label {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-muted); margin-top: 6px;
-    }
-
-    /* ── FOOTER ─────────────────────────────────────────────── */
-    .footer { border-top: 1px solid var(--border-hair); }
-    .footer__inner {
-      max-width: 1280px; margin: 0 auto;
-      padding: clamp(48px, 7vw, 100px) clamp(20px, 5vw, 64px) 40px;
-    }
-    .footer__contact {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: clamp(32px, 6vw, 88px); align-items: start;
-      padding-bottom: clamp(40px, 6vw, 72px);
-      border-bottom: 1px solid var(--border-hair);
-    }
-    .footer__heading {
-      font-family: var(--font-display);
-      font-weight: 700; font-size: clamp(28px, 4vw, 46px);
-      letter-spacing: -0.02em; color: var(--text-strong);
-      margin: 0; line-height: 1.05;
-    }
-    .footer__body {
-      font-size: var(--fs-lead); line-height: 1.5;
-      color: var(--text-body); margin: 20px 0 0; max-width: 36ch;
-    }
-    .footer__email-link {
-      display: inline-flex; align-items: center; gap: 8px;
-      margin-top: 28px;
-      color: var(--text-strong); text-decoration: none;
-      font-weight: 600; font-size: var(--fs-body);
-      border: 1.5px solid var(--border-hair);
-      padding: 9px 16px;
-      transition: border-color var(--dur-base), background var(--dur-base);
-    }
-    .footer__email-link:hover {
-      border-color: var(--text-strong);
-      background: var(--surface-sunk);
-    }
-    .footer__bottom {
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 16px;
-      flex-wrap: wrap; margin-top: 28px;
-    }
-    .footer__wordmark {
-      font-family: var(--font-display);
-      font-weight: 800; font-size: 16px; letter-spacing: -0.02em;
-      color: var(--text-strong);
-    }
-    .footer__copy {
-      font-size: 12px; color: var(--text-muted); letter-spacing: 0.02em;
-    }
-
-    /* ── CONTACT FORM ───────────────────────────────────────── */
-    .contact-form { display: flex; flex-direction: column; gap: 24px; }
-    .field { display: flex; flex-direction: column; gap: 6px; }
-    .field__label {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .field__input {
-      width: 100%;
-      font-family: var(--font-text); font-size: var(--fs-body);
-      color: var(--text-strong); background: transparent;
-      border: none; border-bottom: 1px solid var(--border-hair);
-      padding: 10px 0; outline: none;
-      transition: border-color var(--dur-base);
-    }
-    .field__input::placeholder { color: var(--text-muted); }
-    .field__input:focus { border-bottom-color: var(--accent); }
-    textarea.field__input { resize: vertical; min-height: 80px; }
-    .btn--primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-text);
-      font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
-      background: var(--accent); color: var(--text-on-accent);
-      border: 1.5px solid var(--accent);
-      padding: 13px 24px; cursor: pointer;
-      transition: background var(--dur-base) var(--ease-out),
-                  transform var(--dur-base) var(--ease-out);
-    }
-    .btn--primary:hover {
-      background: var(--accent-hover); border-color: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-    .btn--primary:active { transform: translateY(0); }
-
-    /* ── DETAIL OVERLAY ─────────────────────────────────────── */
-    @keyframes abg-fade { from { opacity: 0 } to { opacity: 1 } }
-    @keyframes abg-rise {
-      from { opacity: 0; transform: scale(0.97) translateY(10px) }
-      to   { opacity: 1; transform: none }
-    }
-
-    .detail-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 200;
-      background: #161618;
-      flex-direction: column;
-    }
-    .detail-overlay.is-open {
-      display: flex;
-      animation: abg-fade 260ms var(--ease-out) both;
-    }
-    .detail-topbar {
-      flex-shrink: 0;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 58px; padding: 0 clamp(20px, 4vw, 56px);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .detail-wordmark {
-      font-family: var(--font-display);
-      font-weight: 800; font-size: 15px; letter-spacing: -0.01em;
-      color: #F7F3EA;
-    }
-    .detail-close {
-      background: none; border: none; padding: 8px; cursor: pointer;
-      color: rgba(247,243,234,.52);
-      display: flex; align-items: center; justify-content: center;
-      transition: color 140ms;
-    }
-    .detail-close:hover { color: #F7F3EA; }
-    .detail-content {
-      flex: 1; display: flex; align-items: center;
-      overflow: hidden; gap: clamp(32px, 5vw, 72px);
-      padding: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 56px);
-    }
-    .detail-image-wrap {
-      flex: 1 1 auto;
-      display: flex; align-items: center; justify-content: center;
-      height: 100%; overflow: hidden; min-width: 0;
-      animation: abg-rise 400ms var(--ease-out) 60ms both;
-    }
-    .detail-mat {
-      background: #fff;
-      padding: clamp(14px, 3%, 36px);
-      box-shadow: 0 8px 40px rgba(0,0,0,.55), 0 2px 8px rgba(0,0,0,.35);
-      display: inline-flex; align-items: center; justify-content: center;
-    }
-    .detail-img {
-      display: block; max-width: 100%;
-      max-height: calc(100vh - 210px);
-      width: auto; height: auto; object-fit: contain;
-    }
-    .detail-meta {
-      flex-shrink: 0;
-      width: clamp(220px, 25vw, 300px);
-      display: flex; flex-direction: column;
-      animation: abg-fade 400ms var(--ease-out) 140ms both;
-    }
-    .detail-overline {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: #ECB02E; margin-bottom: 20px;
-    }
-    .detail-title {
-      font-family: var(--font-display); font-weight: 800;
-      font-size: clamp(26px, 2.6vw, 40px);
-      line-height: 1.02; letter-spacing: -0.02em;
-      color: #fff; margin: 0 0 10px;
-    }
-    .detail-year {
-      font-size: 14px; color: rgba(247,243,234,.40);
-      margin-bottom: 28px; display: block;
-    }
-    .detail-rule { height: 1px; background: rgba(255,255,255,.08); margin-bottom: 28px; }
-    .detail-fields { display: flex; flex-direction: column; gap: 18px; margin-bottom: 28px; }
-    .detail-field__label {
-      font-size: 10px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(247,243,234,.32); margin-bottom: 5px;
-    }
-    .detail-field__value { font-size: 14px; color: #F7F3EA; line-height: 1.4; }
-    .detail-note {
-      font-size: 13px; line-height: 1.6;
-      color: rgba(247,243,234,.52);
-      font-style: italic; margin-bottom: 28px;
-    }
-    .detail-nav { display: flex; align-items: center; gap: 14px; }
-    .detail-nav__btn {
-      width: 36px; height: 36px; flex-shrink: 0;
-      border: 1px solid rgba(255,255,255,.18);
-      background: none; color: rgba(247,243,234,.52);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      padding: 0;
-      transition: border-color 140ms, color 140ms, background 140ms;
-    }
-    .detail-nav__btn:hover:not(:disabled) {
-      border-color: rgba(247,243,234,.5); color: #F7F3EA;
-      background: rgba(247,243,234,.08);
-    }
-    .detail-nav__btn:disabled {
-      border-color: rgba(255,255,255,.08);
-      color: rgba(247,243,234,.18); cursor: default;
-    }
-    .detail-nav__counter {
-      font-size: 12px; letter-spacing: 0.04em;
-      color: rgba(247,243,234,.35); flex-grow: 1; text-align: center;
-    }
-
-    /* ── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 780px) {
-      .hero         { grid-template-columns: 1fr; }
-      .bio__inner   { grid-template-columns: 1fr; }
-      .footer__contact { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      .detail-content {
-        flex-direction: column; overflow-y: auto;
-        align-items: flex-start;
-      }
-      .detail-image-wrap { flex: 0 0 auto; height: auto; width: 100%; }
-      .detail-meta { width: 100%; flex-shrink: 1; }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- ── HEADER ─────────────────────────────────────────────── -->
+  <!-- ── HEADER ──────────────────────────────────────────────── -->
   <header class="site-header">
     <div class="wordmark">
       <span class="wordmark__badge">AB</span>
       <span class="wordmark__name">Annerose Berger</span>
     </div>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Hauptnavigation">
       <a href="#werke"   class="nav-link nav-link--active">Werke</a>
       <a href="#uber"    class="nav-link">Über</a>
       <a href="#kontakt" class="nav-link">Kontakt</a>
     </nav>
   </header>
 
-  <!-- ── HERO ───────────────────────────────────────────────── -->
+  <!-- ── HERO ────────────────────────────────────────────────── -->
   <section class="hero">
     <div class="hero__text">
       <span class="overline">Neue Werke · 2026</span>
@@ -544,10 +46,10 @@
     </div>
   </section>
 
-  <!-- ── ARTIST BIO ──────────────────────────────────────────── -->
+  <!-- ── ARTIST BIO ───────────────────────────────────────────── -->
   <section class="bio" data-theme="dark" id="uber">
     <div class="bio__inner">
-      <figure class="bio__figure">
+      <figure class="bio__figure reveal">
         <img id="bio-img" src="" alt="" loading="lazy">
       </figure>
       <div class="bio__text">
@@ -573,14 +75,15 @@
     </div>
   </section>
 
-  <!-- ── FOOTER / KONTAKT ────────────────────────────────────── -->
+  <!-- ── FOOTER / KONTAKT ─────────────────────────────────────── -->
   <footer class="footer" id="kontakt">
     <div class="footer__inner">
       <div class="footer__contact">
+
         <div>
           <h2 class="footer__heading">Kontakt &amp;<br>Atelierbesuch.</h2>
           <p class="footer__body">Für einen Atelierbesuch oder Fragen zu den Arbeiten hinterlassen Sie eine Nachricht — Annerose meldet sich. Neue Werke kommen fast jeden Monat hinzu.</p>
-          <!-- ÄNDERN: E-Mail-Adresse hier anpassen -->
+          <!-- ÄNDERN: E-Mail-Adresse anpassen -->
           <a href="mailto:kontakt@annerose-berger.de" class="footer__email-link">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <rect x="1.5" y="3.5" width="13" height="9" rx="1" stroke="currentColor" stroke-width="1.25"/>
@@ -592,14 +95,15 @@
 
         <!--
           Kontaktformular:
-          Option A (einfach, kein Server): mailto-Link — öffnet das E-Mail-Programm des Besuchers.
-          Option B (empfohlen): Formspree — kostenlos, kein Server nötig.
-            1. Konto erstellen auf https://formspree.io
-            2. action="..." unten durch Ihre Formspree-URL ersetzen, z.B.:
-               action="https://formspree.io/f/xyzabcde"  method="POST"
-            3. enctype-Attribut entfernen
+          Standard: action="mailto:..." öffnet das E-Mail-Programm des Besuchers.
+
+          Empfohlen: Formspree (kostenlos, kein Server)
+            1. Konto erstellen: https://formspree.io
+            2. action-Attribut ersetzen: action="https://formspree.io/f/IHRE-ID"
+            3. method="POST" behalten, enctype-Attribut entfernen
+          Das Formular sendet dann direkt per Fetch und zeigt eine Bestätigung.
         -->
-        <form class="contact-form"
+        <form class="contact-form" id="contact-form"
               action="mailto:kontakt@annerose-berger.de"
               method="POST"
               enctype="text/plain">
@@ -618,10 +122,10 @@
             <textarea class="field__input" id="message" name="message" rows="4"
                       placeholder="Ich interessiere mich für …" required></textarea>
           </div>
-          <button type="submit" class="btn--primary">Nachricht senden →</button>
+          <button type="submit" class="btn-submit">Nachricht senden →</button>
         </form>
-      </div>
 
+      </div>
       <div class="footer__bottom">
         <span class="footer__wordmark">Annerose Berger</span>
         <span class="footer__copy">Ateliergalerie · Nach Vereinbarung · © 2026 Annerose Berger</span>
@@ -652,7 +156,7 @@
         <span id="detail-year" class="detail-year"></span>
         <div class="detail-rule"></div>
         <div id="detail-fields" class="detail-fields"></div>
-        <p id="detail-note" class="detail-note" style="display:none"></p>
+        <p id="detail-note" class="detail-note"></p>
         <div class="detail-rule"></div>
         <div class="detail-nav">
           <button class="detail-nav__btn" id="detail-prev" aria-label="Vorheriges Werk">
@@ -671,148 +175,6 @@
     </div>
   </div>
 
-  <script>
-    let paintings = [];
-    let openIndex = null;
-
-    // ── LOAD ──────────────────────────────────────────────────
-    async function init() {
-      try {
-        const res = await fetch('paintings.json');
-        if (!res.ok) throw new Error(res.status);
-        paintings = await res.json();
-      } catch (e) {
-        console.error('Konnte paintings.json nicht laden:', e);
-        document.getElementById('gallery-grid').innerHTML =
-          '<p class="gallery__empty">Fehler: paintings.json nicht gefunden. ' +
-          'Bitte mit einem lokalen Webserver öffnen (z.B. python3 -m http.server 8080).</p>';
-        return;
-      }
-      renderHero();
-      renderBio();
-      renderGallery();
-    }
-
-    // ── HERO ──────────────────────────────────────────────────
-    function renderHero() {
-      const p = paintings.find(x => x.featured) || paintings[0];
-      if (!p) return;
-      const img = document.getElementById('hero-img');
-      img.src = p.image; img.alt = p.title;
-      const cap = document.getElementById('hero-caption');
-      cap.innerHTML = '<strong>' + esc(p.title) + '</strong>'
-        + (p.year   ? ', ' + esc(p.year)   : '')
-        + (p.medium ? ' · ' + esc(p.medium) : '');
-    }
-
-    // ── BIO ───────────────────────────────────────────────────
-    function renderBio() {
-      const p = paintings.find(x => x.bio)
-             || paintings.find(x => !x.featured)
-             || paintings[0];
-      if (!p) return;
-      const img = document.getElementById('bio-img');
-      img.src = p.image; img.alt = p.title;
-    }
-
-    // ── GALLERY GRID ──────────────────────────────────────────
-    function renderGallery() {
-      const grid = document.getElementById('gallery-grid');
-      if (!paintings.length) {
-        grid.innerHTML = '<p class="gallery__empty">Noch keine Werke vorhanden.</p>';
-        return;
-      }
-      grid.innerHTML = '';
-      paintings.forEach((p, i) => {
-        const fig = document.createElement('figure');
-        fig.className = 'artwork-card';
-        fig.setAttribute('aria-label', p.title);
-        fig.innerHTML =
-          '<div class="artwork-card__frame">'
-          +   '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy">'
-          + '</div>'
-          + '<figcaption>'
-          +   '<h3 class="artwork-card__title">' + esc(p.title)
-          +     (p.year ? '<span>, ' + esc(p.year) + '</span>' : '')
-          +   '</h3>'
-          +   ((p.medium || p.dimensions)
-              ? '<p class="artwork-card__meta">'
-                + [p.medium, p.dimensions].filter(Boolean).map(esc).join('  ·  ')
-                + '</p>'
-              : '')
-          + '</figcaption>';
-        fig.addEventListener('click', () => openDetail(i));
-        grid.appendChild(fig);
-      });
-    }
-
-    // ── DETAIL ────────────────────────────────────────────────
-    function openDetail(i) {
-      openIndex = i;
-      const p = paintings[i];
-      const overlay = document.getElementById('detail-overlay');
-
-      document.getElementById('detail-img').src    = p.image;
-      document.getElementById('detail-img').alt    = p.title;
-      overlay.setAttribute('aria-label', p.title);
-      document.getElementById('detail-title').textContent   = p.title;
-      document.getElementById('detail-year').textContent    = p.year || '';
-      document.getElementById('detail-counter').textContent = (i + 1) + ' / ' + paintings.length;
-
-      const fields = document.getElementById('detail-fields');
-      fields.innerHTML = '';
-      if (p.medium)     fields.innerHTML += field('Technik', p.medium);
-      if (p.dimensions) fields.innerHTML += field('Maße',    p.dimensions);
-
-      const note = document.getElementById('detail-note');
-      if (p.note) { note.textContent = p.note; note.style.display = ''; }
-      else        { note.style.display = 'none'; }
-
-      document.getElementById('detail-prev').disabled = i === 0;
-      document.getElementById('detail-next').disabled = i === paintings.length - 1;
-
-      overlay.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeDetail() {
-      document.getElementById('detail-overlay').classList.remove('is-open');
-      document.body.style.overflow = '';
-      openIndex = null;
-    }
-
-    function field(label, value) {
-      return '<div>'
-        + '<div class="detail-field__label">' + esc(label) + '</div>'
-        + '<div class="detail-field__value">' + esc(value) + '</div>'
-        + '</div>';
-    }
-
-    // ── EVENTS ────────────────────────────────────────────────
-    document.getElementById('detail-close').addEventListener('click', closeDetail);
-    document.getElementById('detail-prev').addEventListener('click', () => {
-      if (openIndex > 0) openDetail(openIndex - 1);
-    });
-    document.getElementById('detail-next').addEventListener('click', () => {
-      if (openIndex < paintings.length - 1) openDetail(openIndex + 1);
-    });
-    document.getElementById('detail-overlay').addEventListener('click', e => {
-      if (e.target === e.currentTarget) closeDetail();
-    });
-    document.addEventListener('keydown', e => {
-      if (!document.getElementById('detail-overlay').classList.contains('is-open')) return;
-      if (e.key === 'Escape')     closeDetail();
-      if (e.key === 'ArrowLeft'  && openIndex > 0)                      openDetail(openIndex - 1);
-      if (e.key === 'ArrowRight' && openIndex < paintings.length - 1)   openDetail(openIndex + 1);
-    });
-
-    function esc(str) {
-      return String(str)
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
-
-    init();
-  </script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
