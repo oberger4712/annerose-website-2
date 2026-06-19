@@ -1,87 +1,87 @@
-# Annerose Berger — Ateliergalerie
+# Annerose Berger — Gallery
 
-Statische Künstler-Website. Kein CMS, keine Datenbank — Gemälde werden über eine JSON-Datei und einen Bildordner verwaltet.
+Static artist website. No CMS, no database — paintings are managed via a JSON file and an image folder.
 
-## Erste Schritte
+## Getting started
 
 ```bash
 npm install
-npm run dev       # Vorschau → http://localhost:5173
-npm run build     # Produktions-Build → dist/
+npm run dev       # preview → http://localhost:5173
+npm run build     # production build → dist/
 ```
 
-## Gemälde verwalten
+## Managing paintings
 
-Alle Gemälde stehen in **`public/paintings.json`**. Bilder liegen in **`public/images/`**.
+All paintings are defined in **`public/paintings.json`**. Images go in **`public/images/`**.
 
-### Bild hinzufügen
+### Add a painting
 
-1. Bilddatei in `public/images/` ablegen, z.B. `mein-bild.jpg`
-2. Eintrag in `public/paintings.json` ergänzen:
+1. Drop the image file into `public/images/`, e.g. `my-painting.jpg`
+2. Add an entry to `public/paintings.json`:
 
 ```json
 {
-  "image": "images/mein-bild.jpg",
-  "title": "Titel des Werks",
+  "image": "images/my-painting.jpg",
+  "title": "Title of the work",
   "year": "2026",
-  "medium": "Acryl auf Leinwand",
+  "medium": "Acrylic on canvas",
   "dimensions": "40 × 50 cm",
-  "note": "Optionaler Beschreibungstext (erscheint in der Detailansicht)"
+  "note": "Optional description shown in the detail view"
 }
 ```
 
-### Bild entfernen
+### Remove a painting
 
-Eintrag aus `paintings.json` löschen. Die Bilddatei kann bleiben oder ebenfalls gelöscht werden.
+Delete the entry from `paintings.json`. The image file can stay or be deleted too.
 
-### Sonderfelder
+### Special fields
 
-| Feld | Bedeutung |
-|------|-----------|
-| `"featured": true` | Dieses Bild erscheint groß im Hero-Bereich ganz oben |
-| `"bio": true` | Dieses Bild erscheint in der „Über die Künstlerin"-Sektion |
+| Field | Effect |
+|-------|--------|
+| `"featured": true` | This painting appears large in the hero section at the top |
+| `"bio": true` | This painting appears in the "About the artist" section |
 
-Ohne diese Felder landen alle Bilder nur im Galerie-Raster.
+Without these fields a painting only appears in the gallery grid.
 
-## Texte und E-Mail anpassen
+## Changing text and email
 
-Überschriften, Fließtexte und Statistiken stehen direkt in **`index.html`** — einfach suchen und ersetzen.
+Headings, body text, and stats are written directly in **`index.html`** — just search and replace.
 
-Die E-Mail-Adresse für Kontaktanfragen ist an zwei Stellen eingetragen (im `href` des E-Mail-Links und im `action` des Formulars) — nach `kontakt@annerose-berger.de` suchen.
+The contact email appears in two places (the email link `href` and the form `action`) — search for `kontakt@annerose-berger.de` to find both.
 
-### Kontaktformular mit echtem Versand (empfohlen)
+### Proper contact form delivery (recommended)
 
-Das Formular öffnet standardmäßig das E-Mail-Programm des Besuchers (`mailto:`). Für einen echten Versand direkt im Browser:
+By default the form opens the visitor's email client (`mailto:`). For in-browser delivery without opening a mail app:
 
-1. Kostenloses Konto bei [Formspree](https://formspree.io) erstellen
-2. In `index.html` das `action`-Attribut des Formulars ersetzen:
+1. Create a free account at [Formspree](https://formspree.io)
+2. In `index.html`, replace the form's `action` attribute:
    ```html
-   action="https://formspree.io/f/IHRE-ID"
+   action="https://formspree.io/f/YOUR-ID"
    ```
-3. Das `enctype`-Attribut aus dem `<form>`-Tag entfernen
+3. Remove the `enctype` attribute from the `<form>` tag
 
-Das Formular sendet dann per Fetch und zeigt eine Bestätigungsmeldung — ohne Seitenreload.
+The form will then submit via fetch and show a confirmation message — no page reload.
 
 ## Deployment
 
-Nach `npm run build` enthält der Ordner **`dist/`** die fertige Website. Diesen Ordner auf einen beliebigen statischen Hoster hochladen:
+After `npm run build` the **`dist/`** folder contains the finished website. Upload it to any static host:
 
-- **Netlify**: `dist/`-Ordner per Drag & Drop auf [app.netlify.com](https://app.netlify.com) ziehen
-- **Vercel**: Repository verbinden, Build-Befehl `npm run build`, Output `dist`
-- **GitHub Pages**: mit [gh-pages](https://github.com/tschaub/gh-pages) oder GitHub Actions
+- **Netlify**: drag and drop the `dist/` folder onto [app.netlify.com](https://app.netlify.com)
+- **Vercel**: connect the repository, build command `npm run build`, output directory `dist`
+- **GitHub Pages**: use [gh-pages](https://github.com/tschaub/gh-pages) or GitHub Actions
 
-Nach dem Deploy können `public/paintings.json` und die Bilder in `public/images/` direkt auf dem Server aktualisiert werden — ohne Rebuild.
+Once deployed, `public/paintings.json` and the images in `public/images/` can be updated directly on the server — no rebuild needed.
 
-## Projektstruktur
+## Project structure
 
 ```
-├── index.html              Seitenstruktur (HTML)
+├── index.html              Page markup (HTML)
 ├── public/
-│   ├── paintings.json      Gemälde-Daten (hier editieren)
-│   └── images/             Bilddateien (hier ablegen)
+│   ├── paintings.json      Painting data (edit this)
+│   └── images/             Image files (put images here)
 └── src/
-    ├── main.js             Einstiegspunkt
-    ├── gallery.js          Galerie-Rendering & Detail-Overlay
-    ├── scroll.js           Smooth Scroll (Lenis) & Scroll-Animationen
-    └── style.css           Alle Stile & Design-Tokens
+    ├── main.js             Entry point
+    ├── gallery.js          Gallery rendering & detail overlay
+    ├── scroll.js           Smooth scroll (Lenis) & scroll animations
+    └── style.css           All styles & design tokens
 ```
