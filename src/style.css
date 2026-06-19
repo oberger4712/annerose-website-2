@@ -578,7 +578,6 @@ textarea.field__input { resize: vertical; min-height: 80px; }
 .detail-field__value { font-size: 14px; color: #F7F3EA; line-height: 1.4; }
 
 .detail-note {
-  display: none;
   font-size: 13px; line-height: 1.65;
   color: rgba(247,243,234,.52);
   font-style: italic; margin-bottom: 28px;
