@@ -8,7 +8,7 @@ let openIndex = null;
 
 export async function initGallery() {
   try {
-    const res = await fetch('/paintings.json');
+    const res = await fetch(import.meta.env.BASE_URL + 'paintings.json');
     if (!res.ok) throw new Error(res.status);
     galleryData = await res.json();
     paintings = Object.values(galleryData).flatMap((g) => g.works ?? []);
