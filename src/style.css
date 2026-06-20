@@ -270,6 +270,7 @@ body {
 /* ── GALLERY GROUPS ──────────────────────────────────────────── */
 .gallery__group {
   padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(40px, 6vw, 72px);
   border-top: 1px solid var(--border-hair);
 }
 
