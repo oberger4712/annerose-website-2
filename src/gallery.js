@@ -1,6 +1,7 @@
 import { lenis, observeRevealElements } from './scroll.js';
 
-let paintings = [];
+let paintings = [];     // flat list — used by hero, bio, detail overlay
+let galleryData = {};  // grouped by style — used for rendering
 let openIndex = null;
 
 // ── INIT ──────────────────────────────────────────────────────
@@ -9,10 +10,11 @@ export async function initGallery() {
   try {
     const res = await fetch('/paintings.json');
     if (!res.ok) throw new Error(res.status);
-    paintings = await res.json();
+    galleryData = await res.json();
+    paintings = Object.values(galleryData).flatMap((g) => g.works ?? []);
   } catch (e) {
     console.error('Konnte paintings.json nicht laden:', e);
-    document.getElementById('gallery-grid').innerHTML =
+    document.getElementById('gallery-content').innerHTML =
       '<p class="gallery__empty">Fehler beim Laden. Bitte starten Sie den Dev-Server: <code>npm run dev</code></p>';
     return;
   }
@@ -26,11 +28,11 @@ export async function initGallery() {
 // ── HERO ──────────────────────────────────────────────────────
 
 function renderHero() {
-  const p = paintings.find((x) => x.featured) ?? paintings[0];
+  const p = paintings[0];
   if (!p) return;
 
   const img = document.getElementById('hero-img');
-  img.src = p.image;
+  img.src = 'images/two-of-us.jpg';
   img.alt = p.title;
 
   const parts = [p.year, p.medium].filter(Boolean);
@@ -41,9 +43,7 @@ function renderHero() {
 // ── BIO ───────────────────────────────────────────────────────
 
 function renderBio() {
-  const p = paintings.find((x) => x.bio)
-         ?? paintings.find((x) => !x.featured)
-         ?? paintings[0];
+  const p = paintings.find((x) => x.bio) ?? paintings[0];
   if (!p) return;
 
   const img = document.getElementById('bio-img');
@@ -57,34 +57,55 @@ function renderBio() {
 // ── GALLERY GRID ──────────────────────────────────────────────
 
 function renderGallery() {
-  const grid = document.getElementById('gallery-grid');
+  const container = document.getElementById('gallery-content');
 
   if (!paintings.length) {
-    grid.innerHTML = '<p class="gallery__empty">Noch keine Werke vorhanden.</p>';
+    container.innerHTML = '<p class="gallery__empty">Noch keine Werke vorhanden.</p>';
     return;
   }
 
-  grid.innerHTML = '';
+  container.innerHTML = '';
 
-  paintings.forEach((p, i) => {
-    const fig = document.createElement('figure');
-    fig.className = 'artwork-card reveal';
-    fig.setAttribute('aria-label', p.title);
-    fig.innerHTML =
-      `<div class="artwork-card__frame">
-        <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">
-      </div>
-      <figcaption>
-        <h3 class="artwork-card__title">${esc(p.title)}${p.year ? `<span>, ${esc(p.year)}</span>` : ''}</h3>
-        ${(p.medium || p.dimensions)
-          ? `<p class="artwork-card__meta">${[p.medium, p.dimensions].filter(Boolean).map(esc).join('  ·  ')}</p>`
-          : ''}
-      </figcaption>`;
-    fig.addEventListener('click', () => openDetail(i));
-    grid.appendChild(fig);
-  });
+  let flatIndex = 0;
 
-  observeRevealElements(grid);
+  for (const [styleName, group] of Object.entries(galleryData)) {
+    if (!group.works?.length) continue;
+
+    const section = document.createElement('div');
+    section.className = 'gallery__group';
+    section.innerHTML =
+      `<div class="gallery__group-header">
+        <h3 class="gallery__group-title">${esc(styleName)}</h3>
+        ${group.description ? `<p class="gallery__group-desc">${esc(group.description)}</p>` : ''}
+      </div>`;
+
+    const grid = document.createElement('div');
+    grid.className = 'gallery__grid';
+
+    group.works.forEach((p) => {
+      const i = flatIndex++;
+      if (i === 0) return;
+      const fig = document.createElement('figure');
+      fig.className = 'artwork-card reveal';
+      fig.setAttribute('aria-label', p.title);
+      fig.innerHTML =
+        `<div class="artwork-card__frame">
+          <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">
+        </div>
+        <figcaption>
+          <h3 class="artwork-card__title">${esc(p.title)}${p.year ? `<span>, ${esc(p.year)}</span>` : ''}</h3>
+          ${(p.medium || p.dimensions)
+            ? `<p class="artwork-card__meta">${[p.medium, p.dimensions].filter(Boolean).map(esc).join('  ·  ')}</p>`
+            : ''}
+        </figcaption>`;
+      fig.addEventListener('click', () => openDetail(i));
+      grid.appendChild(fig);
+    });
+
+    section.appendChild(grid);
+    container.appendChild(section);
+    observeRevealElements(grid);
+  }
 }
 
 // ── DETAIL OVERLAY ────────────────────────────────────────────

@@ -267,6 +267,41 @@ body {
   grid-column: 1 / -1;
 }
 
+/* ── GALLERY GROUPS ──────────────────────────────────────────── */
+.gallery__group {
+  padding-top: clamp(40px, 6vw, 72px);
+  border-top: 1px solid var(--border-hair);
+}
+
+.gallery__group:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.gallery__group-header {
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+
+.gallery__group-title {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-strong);
+  margin: 0 0 10px;
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+}
+
+.gallery__group-desc {
+  margin: 0;
+  font-size: var(--fs-body);
+  color: var(--text-muted);
+  max-width: 60ch;
+  line-height: 1.65;
+  padding-left: 14px;
+}
+
 /* ── ARTWORK CARD ────────────────────────────────────────────── */
 .artwork-card {
   display: flex; flex-direction: column;

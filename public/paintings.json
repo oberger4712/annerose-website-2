@@ -1,44 +1,61 @@
-[
-  {
-    "image": "images/two-of-us.jpg",
-    "title": "Zwei von uns",
-    "year": "2026",
-    "medium": "Gouache auf Leinwand",
-    "dimensions": "30 × 40 cm",
-    "featured": true,
-    "note": "Zwei Gesichter lehnen sich in einen Rahmen, die Wangen aufgebrochen in Blau, Gold und Rosé. Die schwarze Kontur hält sie ruhig vor flutendem Türkis."
+{
+  "Gouache": {
+    "description": "Deckfarbe auf Leinwand — leuchtende Pigmente, flächige Konturen und eine Farbigkeit, die zwischen Lebendigkeit und Stille pendelt.",
+    "works": [
+      {
+        "image": "images/two-of-us.jpg",
+        "title": "Meine Eltern",
+        "year": "2026",
+        "medium": "Gouache auf Leinwand",
+        "dimensions": "30 × 40 cm",
+        "note": "Zwei Gesichter lehnen sich in einen Rahmen, die Wangen aufgebrochen in Blau, Gold und Rosé. Die schwarze Kontur hält sie ruhig vor flutendem Türkis."
+      },
+      {
+        "image": "images/kindred.jpg",
+        "title": "Verwandt",
+        "year": "2026",
+        "medium": "Gouache auf Leinwand",
+        "dimensions": "30 × 40 cm",
+        "note": "Ein Doppelporträt vor einem Himmel von Rot zu Grün. Die Augen weit und gewiss; die Haut trägt alle Farben zugleich."
+      },
+      {
+        "image": "images/confidantes.jpg",
+        "title": "Vertraute",
+        "year": "2026",
+        "medium": "Gouache auf Leinwand",
+        "dimensions": "30 × 40 cm",
+        "bio": true,
+        "note": "Zwei Frauen wenden sich einander zu über violettem Grund — ein leiser Austausch, mitten im Satz eingefangen."
+      },
+      {
+        "image": "images/girl-in-blue.jpg",
+        "title": "Mädchen in Blau",
+        "year": "2026",
+        "medium": "Gouache auf Leinwand",
+        "dimensions": "30 × 40 cm",
+        "note": "Eine einzelne Sitzende vor Zinnoberrot, blondes Haar rahmt violett umrandete Augen. Der direkteste Blick der Sammlung."
+      }
+    ]
   },
-  {
-    "image": "images/kindred.jpg",
-    "title": "Verwandt",
-    "year": "2026",
-    "medium": "Gouache auf Leinwand",
-    "dimensions": "40 × 50 cm",
-    "note": "Ein Doppelporträt vor einem Himmel von Rot zu Grün. Die Augen weit und gewiss; die Haut trägt alle Farben zugleich."
+  "Acryl": {
+    "description": "Ich male seit Kurzem auch abstrakte Bilder, Farbe, Kontur, Druck, Schaben, Tupfen usw., eine vage Vorstellung von etwas, was entstehen soll und dann kommt eine Dynamik hinzu, die beim figürlichen Malen nicht so deutlich ist. Aus einer Bewegung entsteht eine neue, etwas taucht ab, taucht auf, bleibt wird wegewischt und erscheint in einem neuen Gesicht. Es ist spannend und braucht Mut, weil wenig vorhersehbar ist, weil es einfach kommt oder auch nicht.",
+    "works": [
+      {
+        "image": "images/wide-sky.jpg",
+        "title": "Sonnenaufgang über dem Feld",
+        "year": "2026",
+        "medium": "Acryl",
+        "dimensions": "55 × 75 cm",
+        "note": "Eine Pause von den Gesichtern: kobaltblaues Wetter zieht über ein goldenes Feld, Spachtellicht fängt den Grat."
+      }
+    ]
   },
-  {
-    "image": "images/confidantes.jpg",
-    "title": "Vertraute",
-    "year": "2026",
-    "medium": "Gouache auf Leinwand",
-    "dimensions": "40 × 50 cm",
-    "bio": true,
-    "note": "Zwei Frauen wenden sich einander zu über violettem Grund — ein leiser Austausch, mitten im Satz eingefangen."
+  "Aquarell": {
+    "description": "Wasser als Werkzeug: transparente Schleier, weiche Übergänge und das bewusste Offenlassen des Papiers als Teil des Bildes.",
+    "works": []
   },
-  {
-    "image": "images/girl-in-blue.jpg",
-    "title": "Mädchen in Blau",
-    "year": "2026",
-    "medium": "Gouache auf Leinwand",
-    "dimensions": "24 × 30 cm",
-    "note": "Eine einzelne Sitzende vor Zinnoberrot, blondes Haar rahmt violett umrandete Augen. Der direkteste Blick der Sammlung."
-  },
-  {
-    "image": "images/wide-sky.jpg",
-    "title": "Weiter Himmel",
-    "year": "2026",
-    "medium": "Gouache auf Leinwand",
-    "dimensions": "50 × 35 cm",
-    "note": "Eine Pause von den Gesichtern: kobaltblaues Wetter zieht über ein goldenes Feld, Spachtellicht fängt den Grat."
+  "Ölmalkreide": {
+    "description": "Wachsige, haptische Linien — direkt und gestisch gesetzt, mit einem Leuchten, das an Pastell erinnert, aber kantiger bleibt.",
+    "works": []
   }
-]
+}
