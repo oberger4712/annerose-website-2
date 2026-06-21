@@ -1,6 +1,6 @@
 {
   "Gouache": {
-    "description": "Deckfarbe auf Leinwand — leuchtende Pigmente, flächige Konturen und eine Farbigkeit, die zwischen Lebendigkeit und Stille pendelt.",
+    "description": "(AI #3) Deckfarbe auf Leinwand — leuchtende Pigmente, flächige Konturen und eine Farbigkeit, die zwischen Lebendigkeit und Stille pendelt.",
     "works": [
       {
         "image": "images/two-of-us.jpg",
@@ -8,32 +8,32 @@
         "year": "2026",
         "medium": "Gouache auf Leinwand",
         "dimensions": "30 × 40 cm",
-        "note": "Zwei Gesichter lehnen sich in einen Rahmen, die Wangen aufgebrochen in Blau, Gold und Rosé. Die schwarze Kontur hält sie ruhig vor flutendem Türkis."
+        "note": "(AI #4) Zwei Gesichter lehnen sich in einen Rahmen, die Wangen aufgebrochen in Blau, Gold und Rosé. Die schwarze Kontur hält sie ruhig vor flutendem Türkis."
       },
       {
         "image": "images/kindred.jpg",
-        "title": "Verwandt",
+        "title": "(AI #5) Verwandt",
         "year": "2026",
         "medium": "Gouache auf Leinwand",
         "dimensions": "30 × 40 cm",
-        "note": "Ein Doppelporträt vor einem Himmel von Rot zu Grün. Die Augen weit und gewiss; die Haut trägt alle Farben zugleich."
+        "note": "(AI #6) Ein Doppelporträt vor einem Himmel von Rot zu Grün. Die Augen weit und gewiss; die Haut trägt alle Farben zugleich."
       },
       {
         "image": "images/confidantes.jpg",
-        "title": "Vertraute",
+        "title": "(AI #7) Vertraute",
         "year": "2026",
         "medium": "Gouache auf Leinwand",
         "dimensions": "30 × 40 cm",
         "bio": true,
-        "note": "Zwei Frauen wenden sich einander zu über violettem Grund — ein leiser Austausch, mitten im Satz eingefangen."
+        "note": "(AI #8) Zwei Frauen wenden sich einander zu über violettem Grund — ein leiser Austausch, mitten im Satz eingefangen."
       },
       {
         "image": "images/girl-in-blue.jpg",
-        "title": "Mädchen in Blau",
+        "title": "(AI #9) Mädchen in Blau",
         "year": "2026",
         "medium": "Gouache auf Leinwand",
         "dimensions": "30 × 40 cm",
-        "note": "Eine einzelne Sitzende vor Zinnoberrot, blondes Haar rahmt violett umrandete Augen. Der direkteste Blick der Sammlung."
+        "note": "(AI #10) Eine einzelne Sitzende vor Zinnoberrot, blondes Haar rahmt violett umrandete Augen. Der direkteste Blick der Sammlung."
       }
     ]
   },
@@ -46,16 +46,16 @@
         "year": "2026",
         "medium": "Acryl",
         "dimensions": "55 × 75 cm",
-        "note": "Eine Pause von den Gesichtern: kobaltblaues Wetter zieht über ein goldenes Feld, Spachtellicht fängt den Grat."
+        "note": "(AI #11) Eine Pause von den Gesichtern: kobaltblaues Wetter zieht über ein goldenes Feld, Spachtellicht fängt den Grat."
       }
     ]
   },
   "Aquarell": {
-    "description": "Wasser als Werkzeug: transparente Schleier, weiche Übergänge und das bewusste Offenlassen des Papiers als Teil des Bildes.",
+    "description": "(AI #12) Wasser als Werkzeug: transparente Schleier, weiche Übergänge und das bewusste Offenlassen des Papiers als Teil des Bildes.",
     "works": []
   },
   "Ölmalkreide": {
-    "description": "Wachsige, haptische Linien — direkt und gestisch gesetzt, mit einem Leuchten, das an Pastell erinnert, aber kantiger bleibt.",
+    "description": "(AI #13) Wachsige, haptische Linien — direkt und gestisch gesetzt, mit einem Leuchten, das an Pastell erinnert, aber kantiger bleibt.",
     "works": []
   }
 }
