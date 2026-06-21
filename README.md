@@ -38,20 +38,13 @@ Delete the entry from `paintings.json`. The image file can stay or be deleted to
 
 | Field | Effect |
 |-------|--------|
-| `"featured": true` | This painting appears large in the hero section at the top |
 | `"bio": true` | This painting appears in the "About the artist" section |
 
 Without these fields a painting only appears in the gallery grid.
 
-## Changing text and email
+### Proper contact form delivery
 
-Headings, body text, and stats are written directly in **`index.html`** — just search and replace.
-
-The contact email appears in two places (the email link `href` and the form `action`) — search for `kontakt@annerose-berger.de` to find both.
-
-### Proper contact form delivery (recommended)
-
-By default the form opens the visitor's email client (`mailto:`). For in-browser delivery without opening a mail app:
+For in-browser delivery without opening a mail app:
 
 1. Create a free account at [Formspree](https://formspree.io)
 2. In `index.html`, replace the form's `action` attribute:
