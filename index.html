@@ -14,7 +14,7 @@
       <span class="wordmark__name">Annerose Berger</span>
     </div>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a href="#werke"   class="nav-link nav-link--active">Werke</a>
+      <a href="#gallery"   class="nav-link nav-link--active">Galerie</a>
       <a href="#uber"    class="nav-link">Über</a>
       <a href="#kontakt" class="nav-link">Kontakt</a>
     </nav>
@@ -41,10 +41,9 @@
   </section>
 
   <!-- ── GALLERY ─────────────────────────────────────────────── -->
-  <section class="gallery" id="werke">
+  <section class="gallery" id="gallery">
     <div class="gallery__header">
-      <h2 class="gallery__title">Die Galerie</h2>
-      <span class="tag tag--gold">Galerie 2026</span>
+      <h2 class="gallery__title">Galerie</h2>
     </div>
     <div id="gallery-content">
       <p class="gallery__empty">Werke werden geladen …</p>
@@ -99,20 +98,9 @@
           </a>
         </div>
 
-        <!--
-          Kontaktformular:
-          Standard: action="mailto:..." öffnet das E-Mail-Programm des Besuchers.
-
-          Empfohlen: Formspree (kostenlos, kein Server)
-            1. Konto erstellen: https://formspree.io
-            2. action-Attribut ersetzen: action="https://formspree.io/f/IHRE-ID"
-            3. method="POST" behalten, enctype-Attribut entfernen
-          Das Formular sendet dann direkt per Fetch und zeigt eine Bestätigung.
-        -->
         <form class="contact-form" id="contact-form"
-              action="mailto:kontakt@annerose-berger.de"
-              method="POST"
-              enctype="text/plain">
+              action="https://formspree.io/f/mvzjpqyk"
+              method="POST">
           <div class="field">
             <label class="field__label" for="name">Ihr Name</label>
             <input class="field__input" id="name" name="name" type="text"
@@ -134,7 +122,7 @@
       </div>
       <div class="footer__bottom">
         <span class="footer__wordmark">Annerose Berger</span>
-        <span class="footer__copy">Ateliergalerie · Nach Vereinbarung · © 2026 Annerose Berger</span>
+        <span class="footer__copy">© 2026 Annerose Berger</span>
       </div>
     </div>
   </footer>

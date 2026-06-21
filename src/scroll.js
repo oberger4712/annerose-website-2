@@ -20,7 +20,7 @@ export function initScroll() {
 // Highlight the nav link that matches the currently visible section.
 function initNavHighlight() {
   const sections = [
-    { id: 'werke',   link: document.querySelector('a[href="#werke"]') },
+    { id: 'gallery',   link: document.querySelector('a[href="#gallery"]') },
     { id: 'uber',    link: document.querySelector('a[href="#uber"]') },
     { id: 'kontakt', link: document.querySelector('a[href="#kontakt"]') },
   ];
