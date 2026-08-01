@@ -1,22 +1,20 @@
 {
   "Gouache": {
-    "description": "(AI #3) Deckfarbe auf Leinwand — leuchtende Pigmente, flächige Konturen und eine Farbigkeit, die zwischen Lebendigkeit und Stille pendelt.",
+    "description": "Gouache auf Malkarton: Trocknet schnell, kommt einem schnellen Malstil entgegen und lässt sich nach dem Trocknen gut korrigieren.",
     "works": [
       {
         "image": "images/two-of-us.jpg",
         "title": "Meine Eltern",
         "year": "2026",
         "medium": "Gouache auf Leinwand",
-        "dimensions": "30 × 40 cm",
-        "note": "(AI #4) Zwei Gesichter lehnen sich in einen Rahmen, die Wangen aufgebrochen in Blau, Gold und Rosé. Die schwarze Kontur hält sie ruhig vor flutendem Türkis."
+        "dimensions": "30 × 40 cm"
       },
       {
         "image": "images/kindred.jpg",
         "title": "(AI #5) Verwandt",
         "year": "2026",
         "medium": "Gouache auf Leinwand",
-        "dimensions": "30 × 40 cm",
-        "note": "(AI #6) Ein Doppelporträt vor einem Himmel von Rot zu Grün. Die Augen weit und gewiss; die Haut trägt alle Farben zugleich."
+        "dimensions": "30 × 40 cm"
       },
       {
         "image": "images/confidantes.jpg",
@@ -24,16 +22,49 @@
         "year": "2026",
         "medium": "Gouache auf Leinwand",
         "dimensions": "30 × 40 cm",
-        "bio": true,
-        "note": "(AI #8) Zwei Frauen wenden sich einander zu über violettem Grund — ein leiser Austausch, mitten im Satz eingefangen."
+        "bio": true
       },
       {
         "image": "images/girl-in-blue.jpg",
         "title": "(AI #9) Mädchen in Blau",
         "year": "2026",
-        "medium": "Gouache auf Leinwand",
-        "dimensions": "30 × 40 cm",
-        "note": "(AI #10) Eine einzelne Sitzende vor Zinnoberrot, blondes Haar rahmt violett umrandete Augen. Der direkteste Blick der Sammlung."
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
+      },
+      {
+        "image": "images/meine_mutter.jpg",
+        "title": "Meine Mutter",
+        "year": "2026",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
+      },
+      {
+        "image": "images/mutter_und_kind.jpg",
+        "title": "Mutter und Kind",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
+      },
+      {
+        "image": "images/schweriner_dom.jpg",
+        "title": "Schweriner Dom",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
+      },
+      {
+        "image": "images/trauer_und_trost.jpg",
+        "title": "Trauer und Trost",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
+      },
+      {
+        "image": "images/vornehme_dame.jpg",
+        "title": "Vornehme Dame",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
       }
     ]
   },
@@ -41,12 +72,33 @@
     "description": "Ich male seit Kurzem auch abstrakte Bilder, Farbe, Kontur, Druck, Schaben, Tupfen usw., eine vage Vorstellung von etwas, was entstehen soll und dann kommt eine Dynamik hinzu, die beim figürlichen Malen nicht so deutlich ist. Aus einer Bewegung entsteht eine neue, etwas taucht ab, taucht auf, bleibt wird wegewischt und erscheint in einem neuen Gesicht. Es ist spannend und braucht Mut, weil wenig vorhersehbar ist, weil es einfach kommt oder auch nicht.",
     "works": [
       {
+        "image": "images/die_milchmagd.jpg",
+        "title": "Die Milchmagd nach Vermeer",
+        "year": "2026",
+        "medium": "Acryl",
+        "dimensions": "30 × 40 cm"
+      },
+      {
+        "image": "images/das_maedchen_mit_dem_perlohring.jpg",
+        "title": "Das Mädchen mit dem Perlohring nach Vermeer",
+        "year": "2025",
+        "medium": "Acryl",
+        "dimensions": "50 × 70 cm"
+      },
+      {
         "image": "images/wide-sky.jpg",
         "title": "Sonnenaufgang über dem Feld",
         "year": "2026",
         "medium": "Acryl",
         "dimensions": "55 × 75 cm",
         "note": "(AI #11) Eine Pause von den Gesichtern: kobaltblaues Wetter zieht über ein goldenes Feld, Spachtellicht fängt den Grat."
+      },
+      {
+        "image": "images/kalt_und_warm.jpg",
+        "title": "Kalt und Warm",
+        "year": "2026",
+        "medium": "Acryl",
+        "dimensions": "30 × 40 cm"
       }
     ]
   },
