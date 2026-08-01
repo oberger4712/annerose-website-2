@@ -6,27 +6,27 @@
         "image": "images/two-of-us.jpg",
         "title": "Meine Eltern",
         "year": "2026",
-        "medium": "Gouache auf Leinwand",
+        "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm"
       },
       {
         "image": "images/kindred.jpg",
-        "title": "(AI #5) Verwandt",
+        "title": "Mutter und Tochter",
         "year": "2026",
-        "medium": "Gouache auf Leinwand",
+        "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm"
       },
       {
         "image": "images/confidantes.jpg",
-        "title": "(AI #7) Vertraute",
+        "title": "Meine Eltern im Gespräch",
         "year": "2026",
-        "medium": "Gouache auf Leinwand",
+        "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm",
         "bio": true
       },
       {
         "image": "images/girl-in-blue.jpg",
-        "title": "(AI #9) Mädchen in Blau",
+        "title": "Mädchen in Blau",
         "year": "2026",
         "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm"
@@ -41,13 +41,6 @@
       {
         "image": "images/mutter_und_kind.jpg",
         "title": "Mutter und Kind",
-        "year": "2025",
-        "medium": "Gouache auf Malkarton",
-        "dimensions": "30 × 40 cm"
-      },
-      {
-        "image": "images/schweriner_dom.jpg",
-        "title": "Schweriner Dom",
         "year": "2025",
         "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm"
@@ -75,30 +68,36 @@
         "image": "images/die_milchmagd.jpg",
         "title": "Die Milchmagd nach Vermeer",
         "year": "2026",
-        "medium": "Acryl",
-        "dimensions": "30 × 40 cm"
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm"
       },
       {
-        "image": "images/das_maedchen_mit_dem_perlohring.jpg",
-        "title": "Das Mädchen mit dem Perlohring nach Vermeer",
+        "image": "images/das_maedchen_mit_dem_perlohrring.jpg",
+        "title": "Das Mädchen mit dem Perlohrring nach Vermeer",
         "year": "2025",
-        "medium": "Acryl",
+        "medium": "Acryl auf Leinwand",
         "dimensions": "50 × 70 cm"
       },
       {
         "image": "images/wide-sky.jpg",
         "title": "Sonnenaufgang über dem Feld",
         "year": "2026",
-        "medium": "Acryl",
-        "dimensions": "55 × 75 cm",
-        "note": "(AI #11) Eine Pause von den Gesichtern: kobaltblaues Wetter zieht über ein goldenes Feld, Spachtellicht fängt den Grat."
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "50 × 70 cm"
+      },
+      {
+        "image": "images/schweriner_dom.jpg",
+        "title": "Schweriner Dom",
+        "year": "2025",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm"
       },
       {
         "image": "images/kalt_und_warm.jpg",
         "title": "Kalt und Warm",
         "year": "2026",
-        "medium": "Acryl",
-        "dimensions": "30 × 40 cm"
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "50 × 70 cm"
       }
     ]
   },
