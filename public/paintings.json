@@ -65,18 +65,18 @@
     "description": "Ich male seit Kurzem auch abstrakte Bilder, Farbe, Kontur, Druck, Schaben, Tupfen usw., eine vage Vorstellung von etwas, was entstehen soll und dann kommt eine Dynamik hinzu, die beim figürlichen Malen nicht so deutlich ist. Aus einer Bewegung entsteht eine neue, etwas taucht ab, taucht auf, bleibt wird wegewischt und erscheint in einem neuen Gesicht. Es ist spannend und braucht Mut, weil wenig vorhersehbar ist, weil es einfach kommt oder auch nicht.",
     "works": [
       {
-        "image": "images/die_milchmagd.jpg",
-        "title": "Die Milchmagd nach Vermeer",
-        "year": "2026",
-        "medium": "Acryl auf Leinwand",
-        "dimensions": "60 × 80 cm"
-      },
-      {
         "image": "images/das_maedchen_mit_dem_perlohrring.jpg",
         "title": "Das Mädchen mit dem Perlohrring nach Vermeer",
         "year": "2025",
         "medium": "Acryl auf Leinwand",
         "dimensions": "50 × 70 cm"
+      },
+      {
+        "image": "images/die_milchmagd.jpg",
+        "title": "Die Milchmagd nach Vermeer",
+        "year": "2026",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm"
       },
       {
         "image": "images/wide-sky.jpg",
@@ -100,13 +100,5 @@
         "dimensions": "50 × 70 cm"
       }
     ]
-  },
-  "Aquarell": {
-    "description": "(AI #12) Wasser als Werkzeug: transparente Schleier, weiche Übergänge und das bewusste Offenlassen des Papiers als Teil des Bildes.",
-    "works": []
-  },
-  "Ölmalkreide": {
-    "description": "(AI #13) Wachsige, haptische Linien — direkt und gestisch gesetzt, mit einem Leuchten, das an Pastell erinnert, aber kantiger bleibt.",
-    "works": []
   }
 }
