@@ -1,6 +1,6 @@
 import { lenis, observeRevealElements } from './scroll.js';
 
-let paintings = [];     // flat list — used by hero, bio, detail overlay
+let paintings = [];     // flat list — used by hero, detail overlay
 let galleryData = {};  // grouped by style — used for rendering
 let openIndex = null;
 
@@ -8,7 +8,10 @@ let openIndex = null;
 
 export async function initGallery() {
   try {
-    const res = await fetch(import.meta.env.BASE_URL + 'paintings.json');
+    // Im Entwicklungsmodus Cache umgehen, damit Änderungen sofort sichtbar sind.
+    const url = import.meta.env.BASE_URL + 'paintings.json' +
+      (import.meta.env.DEV ? `?t=${Date.now()}` : '');
+    const res = await fetch(url);
     if (!res.ok) throw new Error(res.status);
     galleryData = await res.json();
     paintings = Object.values(galleryData).flatMap((g) => g.works ?? []);
@@ -43,12 +46,9 @@ function renderHero() {
 // ── BIO ───────────────────────────────────────────────────────
 
 function renderBio() {
-  const p = paintings.find((x) => x.bio) ?? paintings[0];
-  if (!p) return;
-
   const img = document.getElementById('bio-img');
-  img.src = p.image;
-  img.alt = p.title;
+  img.src = 'images/eisblumen.jpg';
+  img.alt = 'Eisblumen';
 
   const fig = img.closest('.reveal');
   if (fig) observeRevealElements(fig.parentElement);

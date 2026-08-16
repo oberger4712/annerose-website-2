@@ -21,8 +21,7 @@
         "title": "Meine Eltern im Gespräch",
         "year": "2026",
         "medium": "Gouache auf Malkarton",
-        "dimensions": "30 × 40 cm",
-        "bio": true
+        "dimensions": "30 × 40 cm"
       },
       {
         "image": "images/girl-in-blue.jpg",
@@ -35,6 +34,13 @@
         "image": "images/meine_mutter.jpg",
         "title": "Meine Mutter",
         "note": "Das hohe Alter zeichnet ihr Gesicht mit den aber immer noch wachen Augen, Leben wird schwer, Sterben auch.",
+        "year": "2026",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
+      },
+      {
+        "image": "images/mein_vater_mit_roter_fliege.jpg",
+        "title": "Mein Vater mit roter Fliege",
         "year": "2026",
         "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm"
@@ -103,6 +109,30 @@
         "year": "2026",
         "medium": "Acryl auf Leinwand",
         "dimensions": "50 × 70 cm"
+      },
+      {
+        "image": "images/die_mit_traenen_saeen.jpg",
+        "title": "Die mit Tränen säen, werden mit Freuden ernten",
+        "year": "2026",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "50 × 70 cm",
+        "note": "Das Licht bricht sich Bahn durch die schwarzen Wolken und vertreibt den Regen."
+      },
+      {
+        "image": "images/ophelia.jpg",
+        "title": "Ophelia",
+        "year": "2026",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "50 × 70 cm",
+        "note": "Ophelia liegt mit gebrochenen Augen, bereits entrückt, in einem Schwebezustand zwischen Leben und Tod."
+      },
+      {
+        "image": "images/grün_und_rot.jpg",
+        "title": "Grün und Rot",
+        "year": "2026",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "50 × 70 cm",
+        "note": "Das Rot durchschneidet das Grün mit gewaltiger Kraft."
       }
     ]
   }

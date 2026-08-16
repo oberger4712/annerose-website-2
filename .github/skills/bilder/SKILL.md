@@ -66,10 +66,15 @@ Dann Annerose genau das sagen (Adresse ggf. anpassen):
 > 2. Tippe oben in die Adresszeile: **localhost:5173** und drücke Enter.
 > 3. Die Website öffnet sich – das ist deine Vorschau, nur auf diesem Computer sichtbar.
 >
-> Diese Seite kannst du geöffnet lassen. Sobald ich etwas ändere, aktualisiert sie sich von selbst.
-> Falls nicht: einmal die Taste **F5** drücken.
+> Diese Seite kannst du die ganze Zeit geöffnet lassen. Sobald ich ein Bild ändere oder
+> hinzufüge, aktualisiert sie sich **von selbst** – du musst nichts drücken.
 
 Wenn die Vorschau schon lief, nur kurz sagen: „Die Vorschau läuft schon – öffne im Browser **localhost:5173**."
+
+Hinweis für dich: Das automatische Neuladen bei Änderungen an der Bilder-Liste kommt aus
+`vite.config.js` (Plugin `reload-on-paintings-change`). Sollte die Vorschau sich einmal doch
+nicht aktualisieren, ist das ein Fehler – dann Annerose bitten, einmal **F5** zu drücken,
+und Ole darauf hinweisen.
 
 ---
 
@@ -101,7 +106,6 @@ Bedeutung der Angaben – so und nicht anders gegenüber Annerose benennen:
 | `medium`      | Technik            | klein unter dem Titel                                  | ja       |
 | `dimensions`  | Größe              | klein unter dem Titel                                  | ja       |
 | `note`        | Beschreibung       | **erst sichtbar, wenn man das Bild anklickt**          | nein     |
-| `bio`         | –                  | markiert das Foto im Abschnitt „Über mich"             | nein     |
 
 **Fehlende Angaben immer nachfragen** – einzeln und in einfachen Worten, z. B.:
 „Aus welchem Jahr ist das Bild?", „Wie groß ist es? (zum Beispiel 30 × 40 cm)",
@@ -133,7 +137,9 @@ Alle Fotos müssen im Ordner `public/images/` liegen.
   es ist das große Bild ganz oben auf der Startseite. Wenn Annerose es entfernen oder
   verschieben will, vorher darauf hinweisen: „Das ist das große Bild ganz oben auf der
   Startseite. Welches Bild soll dort stattdessen stehen?"
-- `"bio": true` darf nur bei **einem** Werk stehen (Foto im Abschnitt „Über mich").
+- Das Foto im Abschnitt „Über mich" steht **nicht** in dieser Liste – es ist fest
+  in `src/gallery.js` eingetragen (`renderBio`). Soll dort ein anderes Bild stehen,
+  wird nur diese Zeile geändert; das Bild erscheint dann nicht im Raster.
 - Nach jeder Änderung prüfen, ob die Datei noch gültig ist:
   `node -e "JSON.parse(require('fs').readFileSync('public/paintings.json','utf8'))"`
   Bei einem Fehler: selbst korrigieren, Annerose damit nicht behelligen.
@@ -141,7 +147,8 @@ Alle Fotos müssen im Ordner `public/images/` liegen.
 
 Nach der Änderung kurz zusammenfassen, was gemacht wurde, und sagen:
 
-> Schau kurz in der Vorschau nach (localhost:5173), ob es dir so gefällt.
+> Schau kurz in der Vorschau nach (localhost:5173), ob es dir so gefällt – sie hat sich
+> gerade schon von selbst aktualisiert.
 
 ---
 
