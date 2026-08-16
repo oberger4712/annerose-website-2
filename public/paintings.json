@@ -34,6 +34,7 @@
       {
         "image": "images/meine_mutter.jpg",
         "title": "Meine Mutter",
+        "note": "Das hohe Alter zeichnet ihr Gesicht mit den aber immer noch wachen Augen, Leben wird schwer, Sterben auch.",
         "year": "2026",
         "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm"
@@ -43,7 +44,8 @@
         "title": "Mutter und Kind",
         "year": "2025",
         "medium": "Gouache auf Malkarton",
-        "dimensions": "30 × 40 cm"
+        "dimensions": "30 × 40 cm",
+        "note": "Mutter und Kind in inniglicher Verbundenheit, mitgegeben ins neue Leben"
       },
       {
         "image": "images/trauer_und_trost.jpg",
@@ -55,10 +57,11 @@
       },
       {
         "image": "images/vornehme_dame.jpg",
-        "title": "Vornehme Dame",
+        "title": "Frau mit blauem Hut",
         "year": "2025",
         "medium": "Gouache auf Malkarton",
-        "dimensions": "30 × 40 cm"
+        "dimensions": "30 × 40 cm",
+        "note": "Das Bild spricht von Einsamkeit, vornehmer Zurückgezogenheit, Kälte"
       }
     ]
   },
@@ -84,7 +87,8 @@
         "title": "Sonnenaufgang über dem Feld",
         "year": "2026",
         "medium": "Acryl auf Leinwand",
-        "dimensions": "50 × 70 cm"
+        "dimensions": "50 × 70 cm",
+        "note": "Bei einem Spaziergang am frühen Morgen"
       },
       {
         "image": "images/schweriner_dom.jpg",
