@@ -516,8 +516,10 @@ textarea.field__input { resize: vertical; min-height: 80px; }
 .detail-overlay {
   display: none;
   position: fixed; inset: 0; z-index: 200;
+  height: 100%; height: 100dvh;
   background: #161618;
   flex-direction: column;
+  overscroll-behavior: contain;
 }
 
 .detail-overlay.is-open {
@@ -548,7 +550,8 @@ textarea.field__input { resize: vertical; min-height: 80px; }
 .detail-close:hover { color: #F7F3EA; }
 
 .detail-content {
-  flex: 1; display: flex; align-items: center;
+  flex: 1 1 auto; min-height: 0;
+  display: flex; align-items: center;
   overflow: hidden; gap: clamp(32px, 5vw, 72px);
   padding: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 56px);
 }
@@ -661,6 +664,8 @@ textarea.field__input { resize: vertical; min-height: 80px; }
     flex-direction: column;
     align-items: stretch;
     overflow-y: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
     gap: 0;
     padding: 0 0 72px;
