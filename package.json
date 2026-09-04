@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
+    "dev:host": "vite --host",
     "images": "node scripts/generate-thumbs.js",
     "prebuild": "npm run images",
     "build": "vite build",
