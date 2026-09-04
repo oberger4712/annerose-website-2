@@ -2,7 +2,13 @@ import { lenis, observeRevealElements } from './scroll.js';
 
 let paintings = [];     // flat list — used by hero, detail overlay
 let galleryData = {};  // grouped by style — used for rendering
+let imageSizes = {};   // originale Pixelmaße, erzeugt von scripts/generate-thumbs.js
 let openIndex = null;
+let detailToken = 0;   // verwirft Ladevorgänge, die durch schnelles Blättern überholt wurden
+
+const THUMB_WIDTHS = [800, 1200];
+// Passend zum Grid: auto-fill minmax(280px, 1fr) in einem 1280px breiten Container.
+const GRID_SIZES = '(max-width: 679px) 92vw, (max-width: 1100px) 45vw, 300px';
 
 // ── INIT ──────────────────────────────────────────────────────
 
@@ -11,10 +17,18 @@ export async function initGallery() {
     // Im Entwicklungsmodus Cache umgehen, damit Änderungen sofort sichtbar sind.
     const url = import.meta.env.BASE_URL + 'paintings.json' +
       (import.meta.env.DEV ? `?t=${Date.now()}` : '');
-    const res = await fetch(url);
+    const sizesUrl = import.meta.env.BASE_URL + 'images/sizes.json' +
+      (import.meta.env.DEV ? `?t=${Date.now()}` : '');
+
+    // sizes.json ist optional — fehlt es, entfallen nur width/height.
+    const [res, sizesRes] = await Promise.all([
+      fetch(url),
+      fetch(sizesUrl).catch(() => null),
+    ]);
     if (!res.ok) throw new Error(res.status);
     galleryData = await res.json();
     paintings = Object.values(galleryData).flatMap((g) => g.works ?? []);
+    if (sizesRes?.ok) imageSizes = await sizesRes.json().catch(() => ({}));
   } catch (e) {
     console.error('Konnte paintings.json nicht laden:', e);
     document.getElementById('gallery-content').innerHTML =
@@ -35,7 +49,11 @@ function renderHero() {
   if (!p) return;
 
   const img = document.getElementById('hero-img');
-  img.src = 'images/two-of-us.jpg';
+  // LCP-Bild: nicht lazy, größere Darstellung als im Grid.
+  applyThumb(img, 'images/two-of-us.jpg', {
+    sizes: '(max-width: 679px) 92vw, 640px',
+    lazy: false,
+  });
   img.alt = p.title;
 
   const parts = [p.year, p.medium].filter(Boolean);
@@ -47,7 +65,9 @@ function renderHero() {
 
 function renderBio() {
   const img = document.getElementById('bio-img');
-  img.src = 'images/eisblumen.jpg';
+  applyThumb(img, 'images/eisblumen.jpg', {
+    sizes: '(max-width: 679px) 92vw, 520px',
+  });
   img.alt = 'Eisblumen';
 
   const fig = img.closest('.reveal');
@@ -90,7 +110,7 @@ function renderGallery() {
       fig.setAttribute('aria-label', p.title);
       fig.innerHTML =
         `<div class="artwork-card__frame">
-          <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">
+          <img ${thumbAttrs(p.image)} alt="${esc(p.title)}">
         </div>
         <figcaption>
           <h3 class="artwork-card__title">${esc(p.title)}${p.year ? `<span>, ${esc(p.year)}</span>` : ''}</h3>
@@ -117,11 +137,29 @@ function openDetail(i) {
 
   overlay.setAttribute('aria-label', p.title);
 
-  // Crossfade image when navigating
+  // Crossfade image when navigating. Zuerst das (meist schon geladene) Vorschau-
+  // bild zeigen, damit das Overlay nie leer wirkt — das Original folgt, sobald es da ist.
   const img = document.getElementById('detail-img');
   img.style.opacity = '0';
+  img.alt = p.title;
+  const token = ++detailToken;
+
+  const thumb = new Image();
+  thumb.onload = () => {
+    if (token !== detailToken || img.dataset.full === p.image) return;
+    img.src = thumb.src;
+    img.style.opacity = '1';
+  };
+  thumb.src = thumbUrl(p.image, 1200);
+
   const preload = new Image();
-  preload.onload = () => { img.src = preload.src; img.alt = p.title; img.style.opacity = '1'; };
+  preload.onload = () => {
+    if (token !== detailToken) return;
+    img.src = preload.src;
+    img.dataset.full = p.image;
+    img.style.opacity = '1';
+  };
+  preload.onerror = () => { if (token === detailToken) img.style.opacity = '1'; };
   preload.src = p.image;
 
   document.getElementById('detail-title').textContent   = p.title;
@@ -211,6 +249,41 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ── HELPERS ───────────────────────────────────────────────────
+
+// images/ophelia.jpg  →  images/thumbs/ophelia-800.webp
+function thumbUrl(image, width) {
+  const base = image.replace(/^.*\//, '').replace(/\.[^.]+$/, '');
+  return `images/thumbs/${base}-${width}.webp`;
+}
+
+// Attribute für ein Vorschaubild: srcset + Maße + Fallback aufs Original,
+// falls die Thumbs noch nicht erzeugt wurden (npm run images).
+function thumbAttrs(image, { sizes = GRID_SIZES, lazy = true } = {}) {
+  const srcset = THUMB_WIDTHS.map((w) => `${thumbUrl(image, w)} ${w}w`).join(', ');
+  const dim = imageSizes[image];
+  return [
+    `src="${esc(thumbUrl(image, 800))}"`,
+    `srcset="${esc(srcset)}"`,
+    `sizes="${esc(sizes)}"`,
+    dim ? `width="${dim.w}" height="${dim.h}"` : '',
+    lazy ? 'loading="lazy"' : 'fetchpriority="high"',
+    'decoding="async"',
+    `onerror="this.onerror=null;this.removeAttribute('srcset');this.src='${esc(image)}'"`,
+  ].filter(Boolean).join(' ');
+}
+
+// Gleiche Logik für <img>-Elemente, die bereits im HTML stehen (Hero, Bio).
+function applyThumb(img, image, { sizes = GRID_SIZES, lazy = true } = {}) {
+  img.srcset = THUMB_WIDTHS.map((w) => `${thumbUrl(image, w)} ${w}w`).join(', ');
+  img.sizes = sizes;
+  img.decoding = 'async';
+  if (lazy) img.loading = 'lazy';
+  else img.fetchPriority = 'high';
+  const dim = imageSizes[image];
+  if (dim) { img.width = dim.w; img.height = dim.h; }
+  img.onerror = () => { img.onerror = null; img.removeAttribute('srcset'); img.src = image; };
+  img.src = thumbUrl(image, 800);
+}
 
 function esc(str) {
   return String(str)

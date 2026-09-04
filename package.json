@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
+    "images": "node scripts/generate-thumbs.js",
+    "prebuild": "npm run images",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,6 +14,7 @@
     "lenis": "^1.1.14"
   },
   "devDependencies": {
+    "sharp": "^0.35.4",
     "vite": "^8.0.16"
   }
 }

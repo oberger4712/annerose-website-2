@@ -30,6 +30,19 @@ All paintings are defined in **`public/paintings.json`**. Images go in **`public
 }
 ```
 
+3. Run `npm run images` — see below.
+
+### Generate preview images (`npm run images`)
+
+The gallery grid must not load the full-resolution originals (~1.5 MB each), otherwise
+scrolling gets slow. `npm run images` creates small WebP versions (800/1200 px wide)
+in `public/images/thumbs/` and records the original dimensions in `public/images/sizes.json`.
+The detail overlay still shows the original file.
+
+Run it after adding or replacing images, and **commit the generated files** — existing
+variants are skipped, so re-running is cheap. `npm run build` runs it automatically.
+If the thumbs are missing, the grid falls back to the originals: correct, just slow.
+
 ### Remove a painting
 
 Delete the entry from `paintings.json`. The image file can stay or be deleted too.
@@ -63,7 +76,9 @@ After `npm run build` the **`dist/`** folder contains the finished website. Uplo
 - **Vercel**: connect the repository, build command `npm run build`, output directory `dist`
 - **GitHub Pages**: use [gh-pages](https://github.com/tschaub/gh-pages) or GitHub Actions
 
-Once deployed, `public/paintings.json` and the images in `public/images/` can be updated directly on the server — no rebuild needed.
+Once deployed, `paintings.json` and the images can be updated directly on the server — no
+rebuild needed. Upload the matching files from `images/thumbs/` and the updated `images/sizes.json`
+along with the original (run `npm run images` locally first).
 
 ## Project structure
 
@@ -71,7 +86,8 @@ Once deployed, `public/paintings.json` and the images in `public/images/` can be
 ├── index.html              Page markup (HTML)
 ├── public/
 │   ├── paintings.json      Painting data (edit this)
-│   └── images/             Image files (put images here)
+│   ├── images/             Image files (put images here)
+│   └── images/thumbs/      Generated previews — npm run images
 └── src/
     ├── main.js             Entry point
     ├── gallery.js          Gallery rendering & detail overlay
