@@ -798,3 +798,7 @@ textarea.field__input { resize: vertical; min-height: 80px; }
 .legal__back { margin-top: 20px; }
 
 .footer__inner--slim { padding-top: clamp(24px, 3vw, 40px); }
+
+/* Gegenstück zum Inline-Style im <head>: sobald diese Datei geladen ist,
+   wird die Seite sichtbar — so sieht man kein ungestyltes HTML. */
+body { visibility: visible; }
