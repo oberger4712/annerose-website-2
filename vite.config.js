@@ -31,4 +31,12 @@ function reloadOnPaintingsChange() {
 export default defineConfig({
   base: '/',
   plugins: [reloadOnPaintingsChange()],
+  build: {
+    rollupOptions: {
+      input: {
+        main:      fileURLToPath(new URL('./index.html', import.meta.url)),
+        impressum: fileURLToPath(new URL('./impressum.html', import.meta.url)),
+      },
+    },
+  },
 })
