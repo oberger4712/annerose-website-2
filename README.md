@@ -55,18 +55,11 @@ Delete the entry from `paintings.json`. The image file can stay or be deleted to
 
 Without these fields a painting only appears in the gallery grid.
 
-### Proper contact form delivery
+### Contact address
 
-For in-browser delivery without opening a mail app:
-
-1. Create a free account at [Formspree](https://formspree.io)
-2. In `index.html`, replace the form's `action` attribute:
-   ```html
-   action="https://formspree.io/f/YOUR-ID"
-   ```
-3. Remove the `enctype` attribute from the `<form>` tag
-
-The form will then submit via fetch and show a confirmation message — no page reload.
+The "Kontakt" button is a `mailto:` link that opens the visitor's own mail program.
+Replace the placeholder address in `index.html` (footer, `class="footer__mail"`) in
+**both** places: the `href` of the button and the address shown in the note below it.
 
 ## Deployment
 

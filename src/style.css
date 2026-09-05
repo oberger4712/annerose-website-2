@@ -492,30 +492,11 @@ body {
   color: var(--text-strong); border-color: var(--text-strong);
 }
 
-/* ── CONTACT FORM ────────────────────────────────────────────── */
-.contact-form { display: flex; flex-direction: column; gap: 24px; }
-
-.field { display: flex; flex-direction: column; gap: 6px; }
-
-.field__label {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--text-muted);
+/* ── KONTAKT (MAILTO) ────────────────────────────────────────── */
+.footer__mail {
+  display: flex; flex-direction: column;
+  align-items: flex-start; gap: 16px;
 }
-
-.field__input {
-  width: 100%;
-  font-family: var(--font-text); font-size: var(--fs-body);
-  color: var(--text-strong); background: transparent;
-  border: none; border-bottom: 1px solid var(--border-hair);
-  padding: 10px 0; outline: none;
-  transition: border-color var(--dur-base);
-}
-
-.field__input::placeholder { color: var(--text-muted); }
-.field__input:focus { border-bottom-color: var(--accent); }
-
-textarea.field__input { resize: vertical; min-height: 80px; }
 
 .btn-submit {
   display: inline-flex; align-items: center; gap: 8px;
@@ -524,6 +505,7 @@ textarea.field__input { resize: vertical; min-height: 80px; }
   background: var(--accent); color: var(--text-on-accent);
   border: 1.5px solid var(--accent);
   padding: 13px 24px; cursor: pointer;
+  text-decoration: none;
   transition:
     background var(--dur-base) var(--ease-out),
     border-color var(--dur-base) var(--ease-out),
@@ -538,12 +520,13 @@ textarea.field__input { resize: vertical; min-height: 80px; }
 
 .btn-submit:active { transform: translateY(0); }
 
-.form-thankyou {
-  font-size: var(--fs-body);
+.footer__mail-note {
+  margin: 0; max-width: 34ch;
+  font-size: 13px; line-height: 1.5;
   color: var(--text-muted);
-  padding: 16px 0;
-  border-top: 1px solid var(--border-hair);
 }
+
+.footer__mail-address { color: var(--text-body); white-space: nowrap; }
 
 /* ── DETAIL OVERLAY ──────────────────────────────────────────── */
 @keyframes detail-fade { from { opacity: 0 } to { opacity: 1 } }

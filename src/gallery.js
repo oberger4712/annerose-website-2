@@ -39,7 +39,6 @@ export async function initGallery() {
   renderHero();
   renderBio();
   renderGallery();
-  setupContactForm();
 }
 
 // ── HERO ──────────────────────────────────────────────────────
@@ -194,33 +193,6 @@ function detailField(label, value) {
     `<div class="detail-field__label">${esc(label)}</div>
      <div class="detail-field__value">${esc(value)}</div>`;
   return div;
-}
-
-// ── CONTACT FORM ──────────────────────────────────────────────
-
-function setupContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    // If using mailto (default), let the browser open the email client as normal.
-    // If the action is a Formspree URL, use fetch instead (no page reload).
-    const action = form.action;
-    if (!action.startsWith('mailto:')) {
-      e.preventDefault();
-      const data = new FormData(form);
-      fetch(action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
-        .then((r) => {
-          if (r.ok) showThankYou(form);
-          else console.error('Formular-Fehler', r.status);
-        })
-        .catch(console.error);
-    }
-  });
-}
-
-function showThankYou(form) {
-  form.innerHTML = '<p class="form-thankyou">Vielen Dank — Annerose meldet sich bald.</p>';
 }
 
 // ── EVENTS ────────────────────────────────────────────────────
