@@ -33,10 +33,10 @@
       {
         "image": "images/meine_mutter.jpg",
         "title": "Meine Mutter",
-        "note": "Das hohe Alter zeichnet ihr Gesicht mit den aber immer noch wachen Augen, Leben wird schwer, Sterben auch.",
         "year": "2026",
         "medium": "Gouache auf Malkarton",
-        "dimensions": "30 × 40 cm"
+        "dimensions": "30 × 40 cm",
+        "note": "Das hohe Alter zeichnet ihr Gesicht mit den aber immer noch wachen Augen, Leben wird schwer, Sterben auch."
       },
       {
         "image": "images/mein_vater_mit_roter_fliege.jpg",
