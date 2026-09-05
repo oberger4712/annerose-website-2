@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "dev:host": "vite --host",
+    "cms": "npm start --prefix cms",
+    "edit": "npm run both --prefix cms",
     "images": "node scripts/generate-thumbs.js",
     "prebuild": "npm run images",
     "build": "vite build",

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galerie bearbeiten</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__titles">
+        <h1>Galerie bearbeiten</h1>
+        <p class="header__status" id="status">Wird geladen …</p>
+      </div>
+      <div class="header__actions">
+        <p class="header__warning" id="publish-warning" hidden></p>
+        <button type="button" class="button button--primary" id="publish" disabled>
+          Speichern und Hochladen
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main" id="groups"></main>
+
+  <div class="dialog" id="dialog" hidden>
+    <div class="dialog__box" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <h2 id="dialog-title">Wird hochgeladen …</h2>
+      <ul class="dialog__steps" id="dialog-steps"></ul>
+      <p class="dialog__message" id="dialog-message"></p>
+      <details class="dialog__details" id="dialog-details" hidden>
+        <summary>Technische Einzelheiten</summary>
+        <pre id="dialog-output"></pre>
+      </details>
+      <button type="button" class="button" id="dialog-close" hidden>Schließen</button>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
