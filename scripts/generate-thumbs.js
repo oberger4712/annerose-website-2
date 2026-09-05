@@ -3,8 +3,9 @@
 //
 //   npm run images
 //
-// Neue Dateien in public/images/thumbs/ und public/images/sizes.json müssen
-// mit committet werden, sonst fehlen sie im Deploy.
+// public/images/thumbs/ und public/images/sizes.json sind Build-Ergebnisse und
+// nicht im Repo. npm run dev und npm run build erzeugen sie automatisch (pre-
+// Skripte), im Deploy übernimmt das die GitHub Action.
 
 import { readdir, stat, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';

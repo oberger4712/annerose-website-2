@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "npm run images",
     "dev": "vite",
+    "predev:host": "npm run images",
     "dev:host": "vite --host",
     "cms": "npm start --prefix cms",
     "edit": "npm run both --prefix cms",
