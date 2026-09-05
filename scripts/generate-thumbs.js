@@ -17,7 +17,10 @@ const imagesDir = path.join(root, 'public', 'images');
 const thumbsDir = path.join(imagesDir, 'thumbs');
 const sizesFile = path.join(imagesDir, 'sizes.json');
 
-export const WIDTHS = [800, 1200];
+// 800/1200 für das Galerie-Raster, 2000 für die Detailansicht. Bei 2000 px
+// braucht auch ein 4K-Bildschirm das Original nicht mehr — es wird nur noch
+// als Fallback geladen, wenn die WebP-Variante fehlt.
+export const WIDTHS = [800, 1200, 2000];
 const SOURCE_EXT = /\.(jpe?g|png|webp)$/i;
 
 async function mtime(file) {

@@ -7,6 +7,7 @@ let openIndex = null;
 let detailToken = 0;   // verwirft Ladevorgänge, die durch schnelles Blättern überholt wurden
 
 const THUMB_WIDTHS = [800, 1200];
+const DETAIL_WIDTH = 2000;   // große Variante für die Detailansicht
 // Passend zum Grid: auto-fill minmax(280px, 1fr) in einem 1280px breiten Container.
 const GRID_SIZES = '(max-width: 679px) 92vw, (max-width: 1100px) 45vw, 300px';
 
@@ -151,6 +152,12 @@ function openDetail(i) {
   };
   thumb.src = thumbUrl(p.image, 1200);
 
+  // Erst die große WebP-Variante, dann das Original: solange ein frisch
+  // hinzugefügtes Bild noch keine Varianten hat (npm run images), greift der
+  // Fallback und die Detailansicht zeigt trotzdem etwas.
+  const sources = [thumbUrl(p.image, DETAIL_WIDTH), p.image];
+  let attempt = 0;
+
   const preload = new Image();
   preload.onload = () => {
     if (token !== detailToken) return;
@@ -158,8 +165,13 @@ function openDetail(i) {
     img.dataset.full = p.image;
     img.style.opacity = '1';
   };
-  preload.onerror = () => { if (token === detailToken) img.style.opacity = '1'; };
-  preload.src = p.image;
+  preload.onerror = () => {
+    if (token !== detailToken) return;
+    attempt++;
+    if (attempt < sources.length) { preload.src = sources[attempt]; return; }
+    img.style.opacity = '1';   // nichts ladbar — wenigstens das Vorschaubild zeigen
+  };
+  preload.src = sources[0];
 
   document.getElementById('detail-title').textContent   = p.title;
   document.getElementById('detail-year').textContent    = p.year ?? '';

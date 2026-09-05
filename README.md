@@ -35,9 +35,10 @@ All paintings are defined in **`public/paintings.json`**. Images go in **`public
 ### Generate preview images (`npm run images`)
 
 The gallery grid must not load the full-resolution originals (~1.5 MB each), otherwise
-scrolling gets slow. `npm run images` creates small WebP versions (800/1200 px wide)
-in `public/images/thumbs/` and records the original dimensions in `public/images/sizes.json`.
-The detail overlay still shows the original file.
+scrolling gets slow. `npm run images` creates smaller WebP versions in `public/images/thumbs/`
+(800/1200 px for the grid, 2000 px for the detail overlay) and records the original dimensions
+in `public/images/sizes.json`. The detail overlay loads the 2000 px variant and falls back to
+the original JPG if it is missing, so a freshly added image is visible right away.
 
 Both folders are **build output and not checked in** — only the originals are. `npm run dev`
 and `npm run build` run the script automatically, and so does the GitHub Action on deploy,
