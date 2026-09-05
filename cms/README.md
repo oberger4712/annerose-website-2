@@ -36,6 +36,9 @@ Für jedes Bild gibt es ein eigenes Feld mit:
 
 - **Bild** — Auswahlliste aller Bilder aus dem Ordner `public/images`.
   Es lässt sich nur ein Bild auswählen, das wirklich vorhanden ist.
+  Ganz oben stehen unter „Neu" die Bilder, die in keinem
+  anderen Eintrag vorkommen. Darunter stehen die übrigen — auswählen lassen
+  sie sich trotzdem.
 - **Titel**, **Jahr**, **Technik**
 - **Maße** — Breite und Höhe einzeln eintragen, das `×` und das `cm` kommen
   von selbst dazu.
@@ -71,6 +74,17 @@ Meldung an. Oben im Kopfbereich erscheint zusätzlich eine Warnung, und die
 Schaltfläche **„Speichern und Hochladen"** lässt sich so lange nicht anklicken,
 bis für jeden Eintrag ein gültiges Bild ausgewählt ist.
 
+## Änderungen herunterladen
+
+Wenn jemand anderes etwas an der Galerie geändert hat, holt die Schaltfläche
+**„Änderungen Herunterladen"** oben im Kopfbereich den neuesten Stand.
+
+Das geht nur, solange hier alles hochgeladen ist. Gibt es noch eigene, nicht
+hochgeladene Änderungen, erscheint ein Hinweis — dann zuerst
+**„Speichern und Hochladen"** anklicken und es danach noch einmal versuchen.
+Ein neu hineinkopiertes Foto, das noch in keinem Eintrag steht, stört dabei
+nicht.
+
 ## Hochladen
 
 Wenn alles passt: oben rechts auf **„Speichern und Hochladen"** klicken.
@@ -101,4 +115,8 @@ wenn Olli sich das ansehen soll.
 - Beim Schreiben werden die Felder in fester Reihenfolge abgelegt
   (`image, title, year, medium, dimensions, note`), leere optionale Felder
   entfallen.
+- „Änderungen Herunterladen" macht `git pull --ff-only` und weigert sich,
+  solange es Änderungen an `public/paintings.json` oder `public/images` gibt,
+  die noch nicht committet sind. Automatisches Zusammenführen wäre die einzige
+  Stelle, an der dieses Werkzeug Arbeit vernichten könnte.
 - Anderer Port: `CMS_PORT=5180 npm run cms`

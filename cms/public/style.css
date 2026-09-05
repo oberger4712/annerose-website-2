@@ -90,6 +90,8 @@ body {
 }
 .button:hover:not(:disabled) { background: #f0ede8; }
 
+#pull { white-space: nowrap; }
+
 .button--primary {
   background: var(--accent);
   border-color: var(--accent);
@@ -241,6 +243,11 @@ body {
 .field textarea:focus {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
+}
+
+/* The group headings are secondary; the options under them are not. */
+.field select optgroup {
+  font-style: normal;
 }
 
 .dimensions {

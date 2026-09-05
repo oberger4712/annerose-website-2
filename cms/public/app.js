@@ -14,10 +14,12 @@ let saving = false;
 let saveQueued = false;
 let dirty = false;
 let saveFailed = false;
+let busy = false;   // a pull or an upload is running
 
 const groupsEl   = document.getElementById('groups');
 const statusEl   = document.getElementById('status');
 const publishEl  = document.getElementById('publish');
+const pullEl     = document.getElementById('pull');
 const warningEl  = document.getElementById('publish-warning');
 
 // --- helpers ---------------------------------------------------------------
@@ -51,6 +53,18 @@ function missingEntries() {
     });
   }
   return result;
+}
+
+// Images used by an entry other than `self`. The entry's own image is not
+// "taken" — it should stay in the normal list while she is editing it.
+function usedImages(self) {
+  const used = new Set();
+  for (const group of Object.values(state.data)) {
+    for (const work of group.works) {
+      if (work !== self && work.image) used.add(work.image);
+    }
+  }
+  return used;
 }
 
 function allMediums() {
@@ -129,7 +143,10 @@ async function save() {
 
 // --- rendering -------------------------------------------------------------
 
-function fillImageOptions(select, current) {
+function fillImageOptions(select, work) {
+  const current = work.image;
+  const used = usedImages(work);
+
   select.textContent = '';
   const empty = el('option', null, '— Bitte ein Bild auswählen —');
   empty.value = '';
@@ -141,12 +158,31 @@ function fillImageOptions(select, current) {
     select.append(gone);
   }
 
-  for (const image of state.images) {
-    const option = el('option', null, fileName(image));
-    option.value = image;
-    select.append(option);
-  }
+  // Unused images first, so the ones she most likely wants are at the top.
+  const append = (label, images) => {
+    if (!images.length) return;
+    const optgroup = el('optgroup');
+    optgroup.label = label;
+    for (const image of images) {
+      const option = el('option', null, fileName(image));
+      option.value = image;
+      optgroup.append(option);
+    }
+    select.append(optgroup);
+  };
+
+  append('Neu', state.images.filter((i) => !used.has(i)));
+  append('Schon in der Gallerie', state.images.filter((i) => used.has(i)));
+
   select.value = current ?? '';
+}
+
+// Choosing an image changes what counts as "already used" everywhere else.
+function refreshImageOptions() {
+  for (const panel of groupsEl.querySelectorAll('.panel')) {
+    const work = workAt(panel.dataset.group, Number(panel.dataset.index));
+    if (work) fillImageOptions(panel.querySelector('.image-select'), work);
+  }
 }
 
 function textField(label, value, onInput, { wide = false, type = 'text', attrs = {} } = {}) {
@@ -237,10 +273,11 @@ function createPanel(groupName, index) {
   const imageWrap = el('label', 'field field--wide');
   imageWrap.append(el('span', 'field__label', 'Bild'));
   const select = el('select', 'image-select');
-  fillImageOptions(select, work.image);
+  fillImageOptions(select, work);
   select.addEventListener('change', () => {
     work.image = select.value;
     updatePanelState(panel);
+    refreshImageOptions();
     updateHeader();
     saveNow();
   });
@@ -364,8 +401,8 @@ function render() {
 
 function updateHeader() {
   const missing = missingEntries();
-  const blocked = missing.length > 0 || saveFailed;
-  publishEl.disabled = blocked;
+  publishEl.disabled = busy || missing.length > 0 || saveFailed;
+  pullEl.disabled = busy;
 
   if (missing.length) {
     warningEl.textContent = missing.length === 1
@@ -465,7 +502,8 @@ publishEl.addEventListener('click', async () => {
     return;
   }
   showDialog('Wird hochgeladen …', 'Das dauert einen Moment. Bitte das Fenster offen lassen.');
-  publishEl.disabled = true;
+  busy = true;
+  updateHeader();
   try {
     const response = await fetch('/api/publish', { method: 'POST' });
     const result = await response.json().catch(() => ({ ok: false, error: 'Unerwartete Antwort vom Server.' }));
@@ -473,6 +511,39 @@ publishEl.addEventListener('click', async () => {
   } catch (error) {
     showResult({ ok: false, error: `Der Editor ist nicht erreichbar: ${error.message}` });
   } finally {
+    busy = false;
+    updateHeader();
+  }
+});
+
+async function reload() {
+  const response = await fetch('/api/state');
+  const body = await response.json();
+  if (body.error) throw new Error(body.error);
+  state.data = body.data;
+  state.images = body.images;
+  dirty = false;
+  render();
+  setStatus('Alle Änderungen gespeichert', 'ok');
+}
+
+pullEl.addEventListener('click', async () => {
+  await saveNow();
+  busy = true;
+  updateHeader();
+  showDialog('Wird heruntergeladen …', 'Einen Moment bitte.');
+  try {
+    const response = await fetch('/api/pull', { method: 'POST' });
+    const result = await response.json().catch(() => ({
+      ok: false,
+      error: 'Unerwartete Antwort vom Editor.',
+    }));
+    if (result.ok && result.changed) await reload();
+    showResult(result);
+  } catch (error) {
+    showResult({ ok: false, error: `Der Editor ist nicht erreichbar: ${error.message}` });
+  } finally {
+    busy = false;
     updateHeader();
   }
 });
@@ -489,7 +560,7 @@ async function pollImages() {
     for (const panel of groupsEl.querySelectorAll('.panel')) {
       const work = workAt(panel.dataset.group, Number(panel.dataset.index));
       if (!work) continue;
-      fillImageOptions(panel.querySelector('.image-select'), work.image);
+      fillImageOptions(panel.querySelector('.image-select'), work);
       panel.querySelector('.panel__thumb img').dataset.for = '';
       updatePanelState(panel);
     }

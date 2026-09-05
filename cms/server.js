@@ -219,6 +219,65 @@ async function publish() {
   };
 }
 
+function pullHint(output) {
+  if (/diverge|not possible to fast-forward|need to specify how/i.test(output)) {
+    return 'Deine Fassung und die auf dem Server sind auseinandergelaufen. '
+         + 'Bitte kurz Bescheid geben — das muss von Hand zusammengeführt werden.';
+  }
+  if (/could not read|authentication|permission denied|publickey/i.test(output)) {
+    return 'Der Zugang zum Server wurde abgelehnt. Bitte kurz Bescheid geben.';
+  }
+  if (/would be overwritten|local changes/i.test(output)) {
+    return 'Es gibt hier noch Änderungen, die nicht hochgeladen sind. '
+         + 'Bitte zuerst auf „Speichern und Hochladen" klicken.';
+  }
+  return 'Das Herunterladen hat nicht geklappt. Bitte kurz Bescheid geben.';
+}
+
+// Fetches what others have pushed. Refuses as long as there is unpublished work
+// here, because merging her edits with someone else's automatically is the one
+// way this tool could lose a painting.
+async function pull() {
+  const steps = [];
+
+  const status = await run('git', ['status', '--porcelain', '--', ...PUBLISH_PATHS]);
+  if (status.code !== 0) {
+    steps.push(step('Nachsehen', status));
+    return { ok: false, steps, error: 'Der Stand konnte nicht geprüft werden.' };
+  }
+  // Untracked files (a photo copied in but not published yet) are harmless —
+  // only changes to files git already knows about can collide with a pull.
+  const changedHere = status.out
+    .split('\n')
+    .filter((line) => line.trim() && !line.startsWith('??'));
+  if (changedHere.length) {
+    return {
+      ok: false,
+      steps,
+      error: 'Hier gibt es noch Änderungen, die nicht hochgeladen sind. '
+           + 'Bitte zuerst auf „Speichern und Hochladen" klicken und es dann noch einmal versuchen.',
+    };
+  }
+
+  const before = await run('git', ['rev-parse', 'HEAD']);
+  const result = await run('git', ['pull', '--ff-only']);
+  steps.push(step('Herunterladen', result));
+  if (result.code !== 0) {
+    return { ok: false, steps, error: pullHint(`${result.out}\n${result.err}`) };
+  }
+
+  const after = await run('git', ['rev-parse', 'HEAD']);
+  const changed = before.out.trim() !== after.out.trim();
+  return {
+    ok: true,
+    steps,
+    changed,
+    message: changed
+      ? 'Die neuesten Änderungen sind jetzt da.'
+      : 'Es gibt nichts Neues — alles ist schon aktuell.',
+  };
+}
+
 // --- http ------------------------------------------------------------------
 
 function sendJson(res, status, body) {
@@ -288,6 +347,10 @@ const server = createServer(async (req, res) => {
 
     if (route === '/api/publish' && req.method === 'POST') {
       return sendJson(res, 200, await publish());
+    }
+
+    if (route === '/api/pull' && req.method === 'POST') {
+      return sendJson(res, 200, await pull());
     }
 
     if (route.startsWith('/images/')) {
