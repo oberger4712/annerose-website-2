@@ -7,7 +7,6 @@ let openIndex = null;
 let detailToken = 0;   // verwirft Ladevorgänge, die durch schnelles Blättern überholt wurden
 
 const THUMB_WIDTHS = [800, 1200];
-const DETAIL_WIDTH = 2000;   // große Variante für die Detailansicht
 // Passend zum Grid: auto-fill minmax(280px, 1fr) in einem 1280px breiten Container.
 const GRID_SIZES = '(max-width: 679px) 92vw, (max-width: 1100px) 45vw, 300px';
 
@@ -155,7 +154,7 @@ function openDetail(i) {
   // Erst die große WebP-Variante, dann das Original: solange ein frisch
   // hinzugefügtes Bild noch keine Varianten hat (npm run images), greift der
   // Fallback und die Detailansicht zeigt trotzdem etwas.
-  const sources = [thumbUrl(p.image, DETAIL_WIDTH), p.image];
+  const sources = [detailUrl(p.image), p.image];
   let attempt = 0;
 
   const preload = new Image();
@@ -238,6 +237,13 @@ document.addEventListener('keydown', (e) => {
 function thumbUrl(image, width) {
   const base = image.replace(/^.*\//, '').replace(/\.[^.]+$/, '');
   return `images/thumbs/${base}-${width}.webp`;
+}
+
+// Große Variante fürs Overlay — auf die längste Kante begrenzt, deshalb ohne
+// Breite im Namen. Siehe scripts/generate-thumbs.js.
+function detailUrl(image) {
+  const base = image.replace(/^.*\//, '').replace(/\.[^.]+$/, '');
+  return `images/thumbs/${base}-detail.webp`;
 }
 
 // Attribute für ein Vorschaubild: srcset + Maße + Fallback aufs Original,

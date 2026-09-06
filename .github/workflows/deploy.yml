@@ -24,6 +24,19 @@ jobs:
           node-version: 26
           cache: npm
       - run: npm ci
+
+      # Vorschaubilder überleben den Lauf, damit nur neue oder geänderte Bilder
+      # neu kodiert werden. restore-keys reicht ein älterer Stand: welche Bilder
+      # wirklich neu müssen, entscheidet der Inhalts-Hash im Skript, nicht der
+      # Cache-Treffer.
+      - uses: actions/cache@v4
+        with:
+          path: |
+            public/images/thumbs
+            .cache
+          key: thumbs-${{ hashFiles('public/images/*', 'scripts/generate-thumbs.js') }}
+          restore-keys: thumbs-
+
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
