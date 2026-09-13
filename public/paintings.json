@@ -141,6 +141,29 @@
         "medium": "Acryl auf Leinwand",
         "dimensions": "60 × 80 cm",
         "note": "Die untergehende Sonne ergießt sich über die Berghänge und der aufgehende Mond spiegelt sich im Gebirgsbach."
+      },
+      {
+        "image": "images/untergehende_sonne_im_aufgewühlten_meer.jpg",
+        "title": "Untergehende Sonne im aufgewühlten Meer",
+        "year": "2026",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm"
+      },
+      {
+        "image": "images/gelb_verliert_sich_im_grün.jpg",
+        "title": "Gelb und Grün treffen sich",
+        "year": "2025",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm",
+        "note": "Gelb verliert sich im Grün oder reißt es auf?"
+      },
+      {
+        "image": "images/die_klavierspielerin.jpg",
+        "title": "Die Klavierspielerin",
+        "year": "2026",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm",
+        "note": "Ein junges Mädchen spielt Klavier, wird aber durch ein spannendes Ereignis abgelenkt, was mag das sein?"
       }
     ]
   }
