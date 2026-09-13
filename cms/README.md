@@ -9,7 +9,22 @@ diesem Ordner (`cms/`) und wird nicht mit veröffentlicht.
 
 ## Starten
 
-Im Hauptordner des Projekts ein Terminal öffnen und eingeben:
+Am einfachsten: im Hauptordner des Projekts die Datei
+**„Galerie bearbeiten"** doppelt anklicken.
+
+Es geht ein schwarzes Fenster auf, in dem die Galerie startet. Beim ersten
+Mal dauert das ein paar Minuten, weil die Vorschaubilder erzeugt werden —
+danach geht es schnell. Sobald alles bereit ist, öffnen sich die Webseite und
+der Editor von selbst im Browser.
+
+Das schwarze Fenster bitte offen lassen, solange gearbeitet wird. Zum Beenden
+einfach schließen.
+
+Fehlt auf dem Rechner noch Node.js, sagt das Fenster Bescheid und nennt die
+Adresse zum Herunterladen.
+
+Wer lieber ein Terminal benutzt: im Hauptordner ein Terminal öffnen und
+eingeben:
 
 ```
 npm run edit
@@ -119,4 +134,14 @@ wenn Olli sich das ansehen soll.
   solange es Änderungen an `public/paintings.json` oder `public/images` gibt,
   die noch nicht committet sind. Automatisches Zusammenführen wäre die einzige
   Stelle, an der dieses Werkzeug Arbeit vernichten könnte.
+- Nichts wird über `npm run …` gestartet: npm ist auf Windows ein `.cmd`,
+  und `spawn` weigert sich, so etwas ohne Shell zu starten (`EINVAL`).
+  Deshalb rufen `start.js` und der Publish-Schritt `node` direkt auf.
+- „Galerie bearbeiten.cmd" ist nur ein Wrapper um `cms/start-gallery.ps1` —
+  Windows öffnet eine doppelt angeklickte `.ps1` im Editor, statt sie
+  auszuführen. Das `.ps1` ist UTF-8 **mit** BOM, sonst liest Windows
+  PowerShell 5.1 die Umlaute als ANSI.
+- Der Launcher wartet auf die Ports, statt eine Wartezeit zu raten. Dabei
+  muss pro Adressfamilie ein eigener Socket her: vite lauscht nur auf `::1`,
+  der Editor nur auf `127.0.0.1`.
 - Anderer Port: `CMS_PORT=5180 npm run cms`

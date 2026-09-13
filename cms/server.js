@@ -34,8 +34,6 @@ const WORK_KEYS = ['image', 'title', 'year', 'medium', 'dimensions', 'note'];
 // Always written, even when empty, so the website never renders "undefined".
 const REQUIRED_KEYS = ['image', 'title'];
 
-const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-
 // Everything the gallery owns; nothing else is ever committed.
 const PUBLISH_PATHS = ['public/paintings.json', 'public/images'];
 
@@ -179,7 +177,9 @@ async function publish() {
     };
   }
 
-  const images = await run(npmCmd, ['run', 'images']);
+  // node directly, not `npm run images`: npm is a .cmd shim on Windows and
+  // spawn refuses to start one without a shell.
+  const images = await run(process.execPath, [path.join(root, 'scripts', 'generate-thumbs.js')]);
   steps.push(step('Vorschaubilder erzeugen', images));
   if (images.code !== 0) {
     return { ok: false, steps, error: 'Die Vorschaubilder konnten nicht erzeugt werden.' };
