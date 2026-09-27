@@ -15,6 +15,7 @@ $root       = Split-Path -Parent $PSScriptRoot
 $startJs    = Join-Path $PSScriptRoot 'start.js'
 $websiteUrl = 'http://localhost:5173'
 $editorUrl  = 'http://localhost:5174'
+$googleUrl  = 'https://photos.google.com/'
 
 $Host.UI.RawUI.WindowTitle = 'Galerie-Editor'
 # Setting this also switches the console to code page 65001, so the umlauts
@@ -98,9 +99,11 @@ try {
     Wait-ForServer $server 5173 30 | Out-Null
     Start-Process $websiteUrl
     Start-Process $editorUrl
+    Start-Process $googleUrl
     Write-Host ''
     Write-Host "  Die Webseite:  $websiteUrl"
     Write-Host "  Der Editor:    $editorUrl"
+    Write-Host "  Google Fotos:  $googleUrl"
     Write-Host ''
     Write-Host 'Beide sind gerade im Browser aufgegangen.'
     Write-Host 'Zum Beenden dieses Fenster schließen.'
