@@ -10,13 +10,6 @@
         "dimensions": "30 × 40 cm"
       },
       {
-        "image": "images/kindred.jpg",
-        "title": "Mutter und Tochter",
-        "year": "2026",
-        "medium": "Gouache auf Malkarton",
-        "dimensions": "30 × 40 cm"
-      },
-      {
         "image": "images/confidantes.jpg",
         "title": "Meine Eltern im Gespräch",
         "year": "2026",
@@ -188,6 +181,27 @@
         "medium": "Acryl auf Leinwand",
         "dimensions": "40 × 50 cm",
         "note": "Kleiner Bruder und große Schwester in herzlicher Verbundenheit"
+      },
+      {
+        "image": "images/maedchen_mit_zoepfen.jpg",
+        "title": "Mädchen mit Zöpfen",
+        "year": "2025",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm"
+      },
+      {
+        "image": "images/Blumenreigen.jpg",
+        "title": "Blumenreigen",
+        "year": "2025",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm"
+      },
+      {
+        "image": "images/Kind mit schwarzen Haaren.jpg",
+        "title": "Kind mit schwarzen Haaren",
+        "year": "2025",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm"
       }
     ]
   }
