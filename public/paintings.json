@@ -55,20 +55,35 @@
         "note": "Wer tröstet hier wen? Wer trauert? Welche Haltung und Augen spenden Trost, welche blicken traurig ins Leere?"
       },
       {
-        "image": "images/vornehme_dame.jpg",
-        "title": "Frau mit blauem Hut",
-        "year": "2025",
-        "medium": "Gouache auf Malkarton",
-        "dimensions": "30 × 40 cm",
-        "note": "Das Bild spricht von Einsamkeit, vornehmer Zurückgezogenheit, Kälte"
-      },
-      {
         "image": "images/junge_mit_katze.jpg",
         "title": "Junge mit Katze",
         "year": "2026",
         "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm",
         "note": "Ein kleiner Junge hält eine Katze fest im Arm, es geht beiden gut, zufrieden in einer tiefen Ruhe"
+      },
+      {
+        "image": "images/der_traeumer.jpg",
+        "title": "Der Träumer",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
+      },
+      {
+        "image": "images/junge_frau.jpg",
+        "title": "Junge Frau",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm",
+        "note": "Sie lauscht aufmerksam einer Geschichte."
+      },
+      {
+        "image": "images/frau_mit_faecher.jpg",
+        "title": "Frau mit Fächer",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm",
+        "note": "Vornehme Frau versteckt sich hinter ihrem Fächer."
       }
     ]
   },
@@ -88,14 +103,6 @@
         "year": "2026",
         "medium": "Acryl auf Leinwand",
         "dimensions": "60 × 80 cm"
-      },
-      {
-        "image": "images/wide-sky.jpg",
-        "title": "Sonnenaufgang über dem Feld",
-        "year": "2026",
-        "medium": "Acryl auf Leinwand",
-        "dimensions": "50 × 70 cm",
-        "note": "Bei einem Spaziergang am frühen Morgen"
       },
       {
         "image": "images/schweriner_dom.jpg",
@@ -151,28 +158,12 @@
         "dimensions": "60 × 80 cm"
       },
       {
-        "image": "images/gelb_verliert_sich_im_grün.jpg",
-        "title": "Gelb und Grün treffen sich",
-        "year": "2025",
-        "medium": "Acryl auf Leinwand",
-        "dimensions": "60 × 80 cm",
-        "note": "Gelb verliert sich im Grün oder reißt es auf?"
-      },
-      {
         "image": "images/die_klavierspielerin.jpg",
         "title": "Die Klavierspielerin nach Vermeer",
         "year": "2026",
         "medium": "Acryl auf Leinwand",
         "dimensions": "60 × 80 cm",
         "note": "Ein junges Mädchen spielt Klavier, wird aber durch ein spannendes Ereignis abgelenkt, was mag das sein?"
-      },
-      {
-        "image": "images/Abschied für immer.jpg",
-        "title": "Abschied für immer",
-        "year": "2026",
-        "medium": "Acryl auf Leinwand",
-        "dimensions": "40 × 50 cm",
-        "note": "Schmerzverzerrtes Gesicht, wir wissen, es ist für immer, ein letztes Mal, wie soll man das aushalten"
       },
       {
         "image": "images/Bruder und  Schwester.jpg",
@@ -202,6 +193,22 @@
         "year": "2025",
         "medium": "Acryl auf Leinwand",
         "dimensions": "60 × 80 cm"
+      },
+      {
+        "image": "images/dorf_in_den_alpen.jpg",
+        "title": "Dorf in den Alpen",
+        "year": "2025",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm",
+        "note": "Eingebettet in Wiesen bei untergehender Sonne schmiegt sich das Dorf an die Berge."
+      },
+      {
+        "image": "images/maria_liest.jpg",
+        "title": "Die Heilige Familie",
+        "year": "2025",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm",
+        "note": "Maria liest in den Heiligen Schriften und Josef hält behutsam das Jesuskind."
       }
     ]
   }
