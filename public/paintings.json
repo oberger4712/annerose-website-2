@@ -100,6 +100,14 @@
         "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm",
         "note": "Hallo, Hallo, ist da jemand? Ja, ich meine dich, genau dich!"
+      },
+      {
+        "image": "images/dorf_in_den_alpen.jpg",
+        "title": "Dorf in den Alpen",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm",
+        "note": "Eingebettet in Wiesen bei untergehender Sonne schmiegt sich das Dorf an die Berge."
       }
     ]
   },
@@ -209,14 +217,6 @@
         "year": "2025",
         "medium": "Acryl auf Leinwand",
         "dimensions": "60 × 80 cm"
-      },
-      {
-        "image": "images/dorf_in_den_alpen.jpg",
-        "title": "Dorf in den Alpen",
-        "year": "2025",
-        "medium": "Acryl auf Leinwand",
-        "dimensions": "60 × 80 cm",
-        "note": "Eingebettet in Wiesen bei untergehender Sonne schmiegt sich das Dorf an die Berge."
       },
       {
         "image": "images/maria_liest.jpg",
