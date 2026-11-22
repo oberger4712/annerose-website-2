@@ -77,11 +77,42 @@
         "medium": "Gouache auf Malkarton",
         "dimensions": "30 × 40 cm",
         "note": "Vornehme Frau versteckt sich hinter ihrem Fächer."
+      },
+      {
+        "image": "images/maria_und_jesuskind.jpg",
+        "title": "Maria und Jesuskind",
+        "year": "2026",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm",
+        "note": "Die beiden Figuren bilden eine Einheit sowohl bildnerisch als auch in der Farbe ihrer Gesichter. Der intensive Blickkontakt und die Hände von Maria und dem Kind erzählen eine Geschichte von großer Liebe und Innigkeit."
+      },
+      {
+        "image": "images/bruder_telefoniert.jpg",
+        "title": "Mein Bruder telefoniert mit mir",
+        "year": "2026",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm",
+        "note": "Hallo, Hallo, ist da jemand? Ja, ich meine dich, genau dich!"
+      },
+      {
+        "image": "images/dorf_in_den_alpen.jpg",
+        "title": "Dorf in den Alpen",
+        "year": "2025",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm",
+        "note": "Eingebettet in Wiesen bei untergehender Sonne schmiegt sich das Dorf an die Berge."
+      },
+      {
+        "image": "images/frau_mit_schwarzem_haar.jpg",
+        "title": "Frau mit schwarzem Haar",
+        "year": "2026",
+        "medium": "Gouache auf Malkarton",
+        "dimensions": "30 × 40 cm"
       }
     ]
   },
   "Acryl": {
-    "description": "Ich male seit Kurzem auch abstrakte Bilder, Farbe, Kontur, Druck, Schaben, Tupfen usw., eine vage Vorstellung von etwas, was entstehen soll und dann kommt eine Dynamik hinzu, die beim figürlichen Malen nicht so deutlich ist. Aus einer Bewegung entsteht eine neue, etwas taucht ab, taucht auf, bleibt wird wegewischt und erscheint in einem neuen Gesicht. Es ist spannend und braucht Mut, weil wenig vorhersehbar ist, weil es einfach kommt oder auch nicht.",
+    "description": "Ich male seit Kurzem auch abstrakte Bilder, Farbe, Kontur, Druck, Schaben, Tupfen usw., eine vage Vorstellung von etwas, was entstehen soll und dann kommt eine Dynamik hinzu, die beim figürlichen Malen nicht so deutlich ist. Aus einer Bewegung entsteht eine neue, etwas taucht ab, taucht auf, bleibt wird weggewischt und erscheint in einem neuen Gesicht. Es ist spannend und braucht Mut, weil wenig vorhersehbar ist, weil es einfach kommt oder auch nicht.",
     "works": [
       {
         "image": "images/das_maedchen_mit_dem_perlohrring.jpg",
@@ -188,20 +219,19 @@
         "dimensions": "60 × 80 cm"
       },
       {
-        "image": "images/dorf_in_den_alpen.jpg",
-        "title": "Dorf in den Alpen",
-        "year": "2025",
-        "medium": "Acryl auf Leinwand",
-        "dimensions": "60 × 80 cm",
-        "note": "Eingebettet in Wiesen bei untergehender Sonne schmiegt sich das Dorf an die Berge."
-      },
-      {
         "image": "images/maria_liest.jpg",
         "title": "Die Heilige Familie",
         "year": "2025",
         "medium": "Acryl auf Leinwand",
         "dimensions": "60 × 80 cm",
         "note": "Maria liest in den Heiligen Schriften und Josef hält behutsam das Jesuskind."
+      },
+      {
+        "image": "images/novembersonne.jpg",
+        "title": "Novembersonne",
+        "year": "2026",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "60 × 80 cm"
       },
       {
         "image": "images/waeldchen_im_sonnenlicht.jpg",
