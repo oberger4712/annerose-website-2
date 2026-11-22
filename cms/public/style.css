@@ -216,6 +216,22 @@ body {
 }
 .field--wide { grid-column: 1 / -1; }
 
+.field--checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.field--checkbox { cursor: pointer; }
+.field .field--checkbox input,
+.field--checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  flex: none;
+}
+
+.panel--hidden { opacity: 0.8; border-style: dashed; }
+
 .field__label {
   font-size: 14px;
   color: var(--muted);

@@ -102,6 +102,8 @@ function normalizeWork(work, group, index) {
     const value = typeof work[key] === 'string' ? work[key].trim() : '';
     if (value || REQUIRED_KEYS.includes(key)) out[key] = value;
   }
+  // Boolean marker: kept out of the gallery grid, written only when set.
+  if (work.hidden === true) out.hidden = true;
   return out;
 }
 

@@ -55,7 +55,7 @@ Delete the entry from `paintings.json`. The image file can stay or be deleted to
 
 | Field | Effect |
 |-------|--------|
-| `"bio": true` | This painting appears in the "About the artist" section |
+| `"hidden": true` | Not shown in the gallery grid, hero or prev/next. The detail view can still be opened from elsewhere (e.g. the "About the artist" photo) |
 
 Without these fields a painting only appears in the gallery grid.
 

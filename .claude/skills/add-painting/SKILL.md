@@ -47,4 +47,4 @@ Expect these from the user. Ask only for what is required and missing.
 
 - The first Gouache work (`works[0]`) is the large hero image on the home page. Do not move or remove it unless the user asks, and say so if they do.
 - Do not commit or push unless the user asks.
-- The "Über mich" photo is not in this list. It is set in `src/gallery.js` (`renderBio`).
+- The "Über mich" photo is set in `src/gallery.js` (`renderBio`). Its entry in `paintings.json` has `"hidden": true`, which keeps it out of the gallery grid while its detail view still opens on click. Add `"hidden": true` as the last key for any work that should not appear in the gallery.

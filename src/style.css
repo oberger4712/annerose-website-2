@@ -334,7 +334,7 @@ body {
 /* ── ARTWORK CARD ────────────────────────────────────────────── */
 .artwork-card {
   display: flex; flex-direction: column;
-  gap: 16px; cursor: pointer; margin: 0;
+  gap: 16px; cursor: zoom-in; margin: 0;
 }
 
 .artwork-card__frame {
@@ -391,6 +391,9 @@ body {
 }
 
 .bio__figure img { display: block; width: 100%; height: auto; }
+
+.bio__figure[role="button"] { cursor: zoom-in; }
+.bio__figure[role="button"]:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
 .bio__heading {
   font-family: var(--font-display);

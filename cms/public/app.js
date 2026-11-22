@@ -242,6 +242,22 @@ function dimensionsField(work) {
   return wrap;
 }
 
+function hiddenField(work, panel) {
+  const wrap = el('label', 'field field--wide field--checkbox');
+  const input = el('input');
+  input.type = 'checkbox';
+  input.checked = work.hidden === true;
+  input.addEventListener('change', () => {
+    if (input.checked) work.hidden = true;
+    else delete work.hidden;
+    panel.classList.toggle('panel--hidden', input.checked);
+    scheduleSave();
+  });
+  wrap.append(input, el('span', 'field__label', 'Nicht in der Galerie zeigen (nur über andere Stellen der Seite erreichbar)'));
+  panel.classList.toggle('panel--hidden', input.checked);
+  return wrap;
+}
+
 function iconButton(label, title, onClick, { disabled = false, className = '' } = {}) {
   const button = el('button', `icon-button ${className}`.trim(), label);
   button.type = 'button';
@@ -299,6 +315,7 @@ function createPanel(groupName, index) {
       work.note = value;
       scheduleSave();
     }, { wide: true, type: 'textarea' }),
+    hiddenField(work, panel),
   );
 
   const side = el('div', 'panel__side');

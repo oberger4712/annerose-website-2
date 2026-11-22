@@ -1,6 +1,7 @@
 import { lenis, observeRevealElements } from './scroll.js';
 
-let paintings = [];     // flat list — used by hero, detail overlay
+let paintings = [];     // flat list of visible works — used by hero, detail overlay
+let hiddenWorks = [];   // works with "hidden": true — not in the gallery, openable via openDetail
 let galleryData = {};  // grouped by style — used for rendering
 let imageSizes = {};   // originale Pixelmaße, erzeugt von scripts/generate-thumbs.js
 let openIndex = null;
@@ -27,7 +28,10 @@ export async function initGallery() {
     ]);
     if (!res.ok) throw new Error(res.status);
     galleryData = await res.json();
-    paintings = Object.values(galleryData).flatMap((g) => g.works ?? []);
+    const all = Object.values(galleryData).flatMap((g) => g.works ?? []);
+    // "hidden" works stay out of grid, hero and prev/next, but can be opened directly.
+    paintings = all.filter((w) => !w.hidden);
+    hiddenWorks = all.filter((w) => w.hidden);
     if (sizesRes?.ok) imageSizes = await sizesRes.json().catch(() => ({}));
   } catch (e) {
     console.error('Konnte paintings.json nicht laden:', e);
@@ -64,12 +68,26 @@ function renderHero() {
 
 function renderBio() {
   const img = document.getElementById('bio-img');
-  applyThumb(img, 'images/eisblumen.jpg', {
+  const image = 'images/fantasie_in_rosa_und_gruen.jpg';
+  applyThumb(img, image, {
     sizes: '(max-width: 679px) 92vw, 520px',
   });
-  img.alt = 'Eisblumen';
+
+  const work = hiddenWorks.find((w) => w.image === image);
+  img.alt = work?.title ?? '';
 
   const fig = img.closest('.reveal');
+  if (fig && work) {
+    fig.setAttribute('role', 'button');
+    fig.tabIndex = 0;
+    fig.setAttribute('aria-label', `${work.title} — Detailansicht öffnen`);
+    fig.addEventListener('click', () => openDetail(work));
+    fig.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      openDetail(work);
+    });
+  }
   if (fig) observeRevealElements(fig.parentElement);
 }
 
@@ -88,7 +106,8 @@ function renderGallery() {
   let flatIndex = 0;
 
   for (const [styleName, group] of Object.entries(galleryData)) {
-    if (!group.works?.length) continue;
+    const works = (group.works ?? []).filter((w) => !w.hidden);
+    if (!works.length) continue;
 
     const section = document.createElement('div');
     section.className = 'gallery__group';
@@ -101,7 +120,7 @@ function renderGallery() {
     const grid = document.createElement('div');
     grid.className = 'gallery__grid';
 
-    group.works.forEach((p) => {
+    works.forEach((p) => {
       const i = flatIndex++;
       if (i === 0) return;
       const fig = document.createElement('figure');
@@ -129,9 +148,13 @@ function renderGallery() {
 
 // ── DETAIL OVERLAY ────────────────────────────────────────────
 
-function openDetail(i) {
+// `target` is an index into `paintings`, or a work object that is not part of
+// the gallery (hidden) — that one has no counter and no prev/next.
+function openDetail(target) {
+  const standalone = typeof target === 'object';
+  const i = standalone ? null : target;
+  const p = standalone ? target : paintings[i];
   openIndex = i;
-  const p = paintings[i];
   const overlay = document.getElementById('detail-overlay');
 
   overlay.setAttribute('aria-label', p.title);
@@ -174,7 +197,8 @@ function openDetail(i) {
 
   document.getElementById('detail-title').textContent   = p.title;
   document.getElementById('detail-year').textContent    = p.year ?? '';
-  document.getElementById('detail-counter').textContent = `${i + 1} / ${paintings.length}`;
+  document.getElementById('detail-counter').textContent =
+    standalone ? '' : `${i + 1} / ${paintings.length}`;
 
   const fields = document.getElementById('detail-fields');
   fields.innerHTML = '';
@@ -185,8 +209,8 @@ function openDetail(i) {
   if (p.note) { note.textContent = p.note; note.style.display = ''; }
   else        { note.style.display = 'none'; }
 
-  document.getElementById('detail-prev').disabled = i === 0;
-  document.getElementById('detail-next').disabled = i === paintings.length - 1;
+  document.getElementById('detail-prev').disabled = standalone || i === 0;
+  document.getElementById('detail-next').disabled = standalone || i === paintings.length - 1;
 
   overlay.classList.add('is-open');
   lenis?.stop();
@@ -211,11 +235,11 @@ function detailField(label, value) {
 document.getElementById('detail-close').addEventListener('click', closeDetail);
 
 document.getElementById('detail-prev').addEventListener('click', () => {
-  if (openIndex > 0) openDetail(openIndex - 1);
+  if (openIndex !== null && openIndex > 0) openDetail(openIndex - 1);
 });
 
 document.getElementById('detail-next').addEventListener('click', () => {
-  if (openIndex < paintings.length - 1) openDetail(openIndex + 1);
+  if (openIndex !== null && openIndex < paintings.length - 1) openDetail(openIndex + 1);
 });
 
 // Click backdrop to close
@@ -227,6 +251,7 @@ document.getElementById('detail-overlay').addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (!document.getElementById('detail-overlay').classList.contains('is-open')) return;
   if (e.key === 'Escape')     closeDetail();
+  if (openIndex === null) return;   // hidden work: no navigation
   if (e.key === 'ArrowLeft'  && openIndex > 0)                      openDetail(openIndex - 1);
   if (e.key === 'ArrowRight' && openIndex < paintings.length - 1)   openDetail(openIndex + 1);
 });

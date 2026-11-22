@@ -240,6 +240,14 @@
         "medium": "Acryl auf Leinwand",
         "dimensions": "60 × 80 cm",
         "note": "Der Himmel drohend schwarz, hat sich das Sonnenlicht einen Spalt gesucht und das Wäldchen in ein helles Licht getaucht."
+      },
+      {
+        "image": "images/fantasie_in_rosa_und_gruen.jpg",
+        "title": "Fantasie in Rosa und Grün",
+        "year": "2026",
+        "medium": "Acryl auf Leinwand",
+        "dimensions": "50 × 70 cm",
+        "hidden": true
       }
     ]
   }

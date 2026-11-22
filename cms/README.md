@@ -59,6 +59,9 @@ Für jedes Bild gibt es ein eigenes Feld mit:
   von selbst dazu.
 - **Notiz** — der längere Text, der in der Detailansicht erscheint.
   Kann leer bleiben.
+- **Nicht in der Galerie zeigen** — das Bild erscheint nicht in der Galerie,
+  lässt sich aber an anderer Stelle der Webseite anklicken (z. B. das Foto
+  bei „Über mich"). Der Eintrag wird im Editor gestrichelt dargestellt.
 
 Rechts neben jedem Feld:
 
